@@ -1,9 +1,7 @@
 # OSX
-#
 .DS_Store
 
-# Xcode
-#
+# XCode
 build/
 *.pbxuser
 !default.pbxuser
@@ -21,33 +19,25 @@ DerivedData
 *.ipa
 *.xcuserstate
 
-# Android/IntelliJ
-#
+# Android
 build/
 .idea
 .gradle
 local.properties
 *.iml
 
-# node.js
-#
+# Nodes
 node_modules/
 npm-debug.log
 yarn-error.log
 
-# BUCK
+# Buck
 buck-out/
 \.buckd/
 *.keystore
 !debug.keystore
 
-# fastlane
-#
-# It is recommended to not store the screenshots in the git repo. Instead, use fastlane to re-generate the
-# screenshots whenever they are needed.
-# For more information about the recommended setup visit:
-# https://docs.fastlane.tools/best-practices/source-control/
-
+# Fastlane
 */fastlane/report.xml
 */fastlane/Preview.html
 */fastlane/screenshots
