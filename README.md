@@ -1,0 +1,1 @@
+[Detox Documentation - Getting Started](https://wix.github.io/Detox/docs/introduction/getting-started)
