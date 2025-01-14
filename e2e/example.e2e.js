@@ -1,10 +1,6 @@
 describe('Example', () => {
   beforeAll(async () => {
-    await device.launchApp()
-  })
-
-  beforeEach(async () => {
-    await device.reloadReactNative()
+    await device.launchApp({ newInstance: true })
   })
 
   it('Home screen should be visible', async () => {
