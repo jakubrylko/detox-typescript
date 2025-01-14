@@ -449,11 +449,11 @@ PODS:
     - React-Core
   - RNGestureHandler (2.9.0):
     - React-Core
-  - RNReanimated (3.0.2):
+  - RNReanimated (3.3.0):
     - DoubleConversion
     - FBLazyVector
-    - FBReactNativeSpec
     - glog
+    - hermes-engine
     - RCT-Folly
     - RCTRequired
     - RCTTypeSafety
@@ -463,11 +463,13 @@ PODS:
     - React-Core/RCTWebSocket
     - React-CoreModules
     - React-cxxreact
+    - React-hermes
     - React-jsi
     - React-jsiexecutor
     - React-jsinspector
     - React-RCTActionSheet
     - React-RCTAnimation
+    - React-RCTAppDelegate
     - React-RCTBlob
     - React-RCTImage
     - React-RCTLinking
@@ -700,7 +702,7 @@ SPEC CHECKSUMS:
   RNCPicker: 123b08b70fa398238153fca3c3f34c989f8713ca
   RNDateTimePicker: fcc563c0f4ef92e89dc23d3b9c7d021ede7a0865
   RNGestureHandler: 5fe9e4f847b51d8cc9006cec6c7dc6718dd82809
-  RNReanimated: a13efd382a7ac17b7284768c1cb8a8653011e67b
+  RNReanimated: 66b73d76033ee90993b08707aea68416eae2ebc5
   RNScreens: c6ae949c292bee8ed7f355ab2adcfc9a51629951
   RNVectorIcons: 5784330be9dddb5474e8b378d5f6947996c84e55
   SocketRocket: f32cd54efbe0f095c4d7594881e52619cfe80b17
