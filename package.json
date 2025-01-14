@@ -6,6 +6,7 @@
     "clean:android": "cd android && ./gradlew clean && cd ..",
     "clean:detox": "detox clean-framework-cache && detox clean-cache",
     "clean:ios": "cd ios && xcodebuild clean && cd ..",
+    "clean:pods": "cd ios && pod deintegrate && cd ..",
     "detox:build:android": "detox build -c android",
     "detox:build:ios": "detox build -c ios",
     "detox:test:android": "detox test -c android",
