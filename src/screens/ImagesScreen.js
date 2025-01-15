@@ -19,7 +19,7 @@ ImagesScreen.navigationOptions = {
   headerShown: true,
   headerTitleAlign: 'center',
   title: 'Cities',
-  tabBarIcon: <FontAwesome5 name="city" size={20} />,
+  tabBarIcon: <FontAwesome5 name="city" size={20} testID="tabBarIcon-cities" />,
   tabBarAccessibilityLabel: 'Cities'
 }
 

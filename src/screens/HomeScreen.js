@@ -3,7 +3,7 @@ import HomeComponents from '../components/HomeComponents'
 
 const HomeScreen = ({ navigation }) => {
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.container} testID="homeScreen">
       <HomeComponents
         text="Counters"
         background="#B2FADE"

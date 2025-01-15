@@ -1,8 +1,7 @@
 import { expect } from 'detox'
-import { getAttribute } from './getAttribute'
-import { waitUntilNotVisible, waitUntilVisible } from './waitUntilVisible'
+import { getAttribute, waitUntilNotVisible, waitUntilVisible } from '.'
 
-export const shouldBeVisible = async (target: Target) => {
+export const shouldBeVisible = async (target: DetoxTarget) => {
   if (Array.isArray(target)) {
     for await (const element of target) {
       await waitUntilVisible(element)
@@ -12,7 +11,7 @@ export const shouldBeVisible = async (target: Target) => {
   }
 }
 
-export const shouldNotBeVisible = async (target: Target) => {
+export const shouldNotBeVisible = async (target: DetoxTarget) => {
   if (Array.isArray(target)) {
     for await (const element of target) {
       await waitUntilNotVisible(element)
@@ -33,7 +32,7 @@ export const isElementVisible = async (
   }
 }
 
-export const doesElementExists = async (
+export const doesElementExist = async (
   element: Detox.IndexableNativeElement
 ) => {
   try {

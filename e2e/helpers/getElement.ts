@@ -1,7 +1,22 @@
-export const getById = (id: Matcher) => element(by.id(id))
+export const getById = (id: DetoxMatcher) => element(by.id(id))
 
-export const getByLabel = (label: Matcher) => element(by.label(label))
+export const getByLabel = (label: DetoxMatcher) => element(by.label(label))
 
-export const getByText = (text: Matcher) => element(by.text(text))
+export const getByText = (text: DetoxMatcher) => element(by.text(text))
 
 export const getByType = (type: string) => element(by.type(type))
+
+export const getByDoubleMatcher = (
+  first: Detox.NativeMatcher,
+  second: Detox.NativeMatcher
+) => element(first.and(second))
+
+export const getWithAncestor = (
+  child: Detox.NativeMatcher,
+  parent: Detox.NativeMatcher
+) => element(child.withAncestor(parent))
+
+export const getWithDescendant = (
+  parent: Detox.NativeMatcher,
+  child: Detox.NativeMatcher
+) => element(parent.withDescendant(child))

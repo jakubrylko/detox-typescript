@@ -1,3 +1,5 @@
+type DetoxMatcher = string | RegExp
+
 type DetoxScrollOptions = {
   visibility?: number
   direction?: Detox.Direction
@@ -6,11 +8,9 @@ type DetoxScrollOptions = {
   startPositionY?: number
 }
 
+type DetoxTarget = Detox.NativeElement | Detox.NativeElement[]
+
 type DetoxWaitOptions = {
   visibility?: number
   timeout?: number
 }
-
-type Matcher = string | RegExp
-
-type Target = Detox.NativeElement | Detox.NativeElement[]
