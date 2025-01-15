@@ -1,11 +1,18 @@
-import { getByText, getWithAncestor, shouldBeVisible } from 'e2e/helpers'
+import { shouldBeVisible } from 'e2e/helpers'
+import {
+  animationBtn,
+  citiesBtn,
+  countersBtn,
+  extrasBtn,
+  memberListBtn
+} from '.'
 
-export const assertHomeMenu = async () => {
+export const assertMenu = async () => {
   await shouldBeVisible([
-    getByText('Counters'),
-    getByText('Member List'),
-    getWithAncestor(by.text('Cities'), by.id('homeScreen')),
-    getByText('Animation'),
-    getByText('Extras')
+    countersBtn,
+    memberListBtn,
+    citiesBtn,
+    animationBtn,
+    extrasBtn
   ])
 }
