@@ -23,6 +23,6 @@ export const assertCounterValue = async (
   const selector = getWithAncestor(
     by.type(isIos() ? 'RCTTextView' : 'android.widget.TextView'),
     by.label(`${counter.toLowerCase()}CounterLabel`)
-  ).atIndex(1)
+  ).atIndex(isIos() ? 1 : 0)
   await expect(selector).toHaveText(value)
 }
