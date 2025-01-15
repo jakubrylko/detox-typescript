@@ -1,11 +1,11 @@
-import { expect } from 'detox'
+import { getByText, launchApp, shouldBeVisible } from 'e2e/helpers'
 
-describe('Example', () => {
-  beforeAll(async () => {
-    await device.launchApp({ newInstance: true })
+describe('Starter', () => {
+  beforeEach(async () => {
+    await launchApp()
   })
 
   it('Home screen should be visible', async () => {
-    await expect(element(by.text('Counters'))).toBeVisible()
+    await shouldBeVisible(getByText('Counters'))
   })
 })
