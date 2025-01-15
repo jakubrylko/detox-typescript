@@ -1,5 +1,3 @@
-import { device } from 'detox'
-
 export const launchApp = async ({ ...rest }: Record<string, unknown> = {}) => {
   await device.launchApp({
     permissions: { notifications: 'YES' },

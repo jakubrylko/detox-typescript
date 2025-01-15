@@ -1,13 +1,16 @@
-export const getText = async (
+export const getAttribute = async (
   selector: Detox.IndexableNativeElement,
+  attribute: keyof Detox.ElementAttributes,
   { index = 0 } = {}
 ) => {
-  const attributes = await selector.getAttributes()
+  const attributes = await selector.atIndex(index).getAttributes()
 
-  if ('elements' in attributes) {
-    return attributes.elements[index].text || ''
+  if (!('elements' in attributes)) {
+    return attributes[attribute]
+  } else if (index !== undefined) {
+    return attributes.elements[index][attribute]
   } else {
-    return attributes.text || ''
+    console.log('Multiple elements returned!')
   }
 }
 
@@ -24,19 +27,16 @@ export const getLabel = async (
   }
 }
 
-export const getAttribute = async (
+export const getText = async (
   selector: Detox.IndexableNativeElement,
-  attribute: keyof Detox.ElementAttributes,
   { index = 0 } = {}
 ) => {
-  const attributes = await selector.atIndex(index).getAttributes()
+  const attributes = await selector.getAttributes()
 
-  if (!('elements' in attributes)) {
-    return attributes[attribute]
-  } else if (index !== undefined) {
-    return attributes.elements[index][attribute]
+  if ('elements' in attributes) {
+    return attributes.elements[index].text || ''
   } else {
-    console.log('Multiple elements returned!')
+    return attributes.text || ''
   }
 }
 
