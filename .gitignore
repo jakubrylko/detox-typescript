@@ -1,3 +1,32 @@
+# Android
+build/
+.idea
+.gradle
+local.properties
+*.iml
+
+# Buck
+buck-out/
+\.buckd/
+*.keystore
+!debug.keystore
+
+# Bundle artifact
+*.jsbundle
+
+# CocoaPods
+/ios/Pods/
+
+# Fastlane
+*/fastlane/report.xml
+*/fastlane/Preview.html
+*/fastlane/screenshots
+
+# Nodes
+node_modules/
+npm-debug.log
+yarn-error.log
+
 # OSX
 .DS_Store
 
@@ -18,32 +47,3 @@ DerivedData
 *.hmap
 *.ipa
 *.xcuserstate
-
-# Android
-build/
-.idea
-.gradle
-local.properties
-*.iml
-
-# Nodes
-node_modules/
-npm-debug.log
-yarn-error.log
-
-# Buck
-buck-out/
-\.buckd/
-*.keystore
-!debug.keystore
-
-# Fastlane
-*/fastlane/report.xml
-*/fastlane/Preview.html
-*/fastlane/screenshots
-
-# Bundle artifact
-*.jsbundle
-
-# CocoaPods
-/ios/Pods/

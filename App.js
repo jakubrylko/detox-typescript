@@ -26,7 +26,7 @@ const homeFlow = createStackNavigator({
 
 homeFlow.navigationOptions = {
   title: 'Home',
-  tabBarIcon: <FontAwesome5 name="home" size={20} />,
+  tabBarIcon: <FontAwesome5 name="home" size={20} testID="tabBarIcon-home" />,
   tabBarAccessibilityLabel: 'Home'
 }
 
@@ -39,7 +39,13 @@ const membersFlow = createStackNavigator({
 
 membersFlow.navigationOptions = {
   title: 'Members',
-  tabBarIcon: <MaterialCommunityIcons name="wallet-membership" size={20} />,
+  tabBarIcon: (
+    <MaterialCommunityIcons
+      name="wallet-membership"
+      size={20}
+      testID="tabBarIcon-members"
+    />
+  ),
   tabBarAccessibilityLabel: 'Members'
 }
 
