@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import { View } from 'react-native';
-import { Button } from 'react-native-elements';
-import DateTimePicker from '@react-native-community/datetimepicker';
-import MemberFormInputFields from './MemberFormInputFields';
-import moment from 'moment';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import DateTimePicker from '@react-native-community/datetimepicker'
+import moment from 'moment'
+import { useState } from 'react'
+import { View } from 'react-native'
+import { Button } from 'react-native-elements'
+import { TouchableOpacity } from 'react-native-gesture-handler'
+import MemberFormInputFields from './MemberFormInputFields'
 
 const MemberFormTimeFields = ({
   labelAndPlaceholder,
@@ -12,32 +12,32 @@ const MemberFormTimeFields = ({
   inputChangeText,
   isFailingValidation,
   errorMessage,
-  isInError,
+  isInError
 }) => {
-  const [time, setTime] = useState(inputValue || '');
-  const [show, setShow] = useState(false);
-  const [lastTime, setLastTime] = useState(inputValue || new Date());
+  const [time, setTime] = useState(inputValue || '')
+  const [show, setShow] = useState(false)
+  const [lastTime, setLastTime] = useState(inputValue || new Date())
 
   const onChange = (event, selectedTime) => {
-    const currentTime = selectedTime || time;
-    setShow(Platform.OS === 'ios');
-    setTime(currentTime);
-    setLastTime(currentTime);
-    inputChangeText(currentTime);
-  };
+    const currentTime = selectedTime || time
+    setShow(Platform.OS === 'ios')
+    setTime(currentTime)
+    setLastTime(currentTime)
+    inputChangeText(currentTime)
+  }
 
   const onConfirm = (confirmedTime) => {
-    setLastTime(confirmedTime);
-    inputChangeText(confirmedTime);
-    setTime(confirmedTime);
-    setShow(false);
-  };
+    setLastTime(confirmedTime)
+    inputChangeText(confirmedTime)
+    setTime(confirmedTime)
+    setShow(false)
+  }
 
   const cancelChange = () => {
-    setTime(inputValue);
-    setShow(false);
-    setLastTime(inputValue || new Date());
-  };
+    setTime(inputValue)
+    setShow(false)
+    setLastTime(inputValue || new Date())
+  }
 
   return (
     <View>
@@ -63,12 +63,12 @@ const MemberFormTimeFields = ({
           {Platform.OS === 'ios' && (
             <View>
               <Button
-                style={{margin: 5}}
+                style={{ margin: 5 }}
                 title="Confirm"
                 onPress={() => onConfirm(lastTime)}
               />
               <Button
-                style={{margin: 5, paddingBottom: 10}}
+                style={{ margin: 5, paddingBottom: 10 }}
                 title="Cancel"
                 onPress={() => cancelChange()}
               />
@@ -77,7 +77,7 @@ const MemberFormTimeFields = ({
         </View>
       )}
     </View>
-  );
-};
+  )
+}
 
-export default MemberFormTimeFields;
+export default MemberFormTimeFields

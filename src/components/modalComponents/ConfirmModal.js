@@ -1,8 +1,7 @@
-import React from 'react';
-import { View, StyleSheet, Modal } from 'react-native';
-import { Text } from 'react-native-elements';
-import ModalSection from './ModalSection';
-import ModalButton from './ModalButton';
+import { Modal, StyleSheet, View } from 'react-native'
+import { Text } from 'react-native-elements'
+import ModalButton from './ModalButton'
+import ModalSection from './ModalSection'
 
 const ConfirmModal = ({ text, visible, onAccept, onDecline }) => {
   return (
@@ -10,7 +9,8 @@ const ConfirmModal = ({ text, visible, onAccept, onDecline }) => {
       visible={visible}
       transparent
       animationType="slide"
-      onRequestClose={() => {}}>
+      onRequestClose={() => {}}
+    >
       <View style={styles.containerStyle}>
         <ModalSection>
           <Text style={styles.textStyle}>{text}</Text>
@@ -24,21 +24,21 @@ const ConfirmModal = ({ text, visible, onAccept, onDecline }) => {
         </ModalSection>
       </View>
     </Modal>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   textStyle: {
     flex: 1,
     fontSize: 18,
     textAlign: 'center',
-    lineHeight: 40,
+    lineHeight: 40
   },
   containerStyle: {
     backgroundColor: 'rgba(0, 0, 0, 0.75)',
     position: 'relative',
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
   buttonContainer: {
     justifyContent: 'space-between',
@@ -46,8 +46,8 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     marginLeft: 35,
-    marginRight: 35,
-  },
-});
+    marginRight: 35
+  }
+})
 
-export default ConfirmModal;
+export default ConfirmModal

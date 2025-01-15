@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import { View, StyleSheet, TextInput } from 'react-native';
-import { Text } from 'react-native-elements';
+import { useEffect, useState } from 'react'
+import { StyleSheet, TextInput, View } from 'react-native'
+import { Text } from 'react-native-elements'
 
 const MemberFormInputFields = ({
   labelAndPlaceholder,
@@ -9,26 +9,26 @@ const MemberFormInputFields = ({
   editableStatus,
   isFailingValidation,
   errorMessage,
-  isInError,
+  isInError
 }) => {
-  const [isErrorState, setIsErrorState] = useState(isInError);
+  const [isErrorState, setIsErrorState] = useState(isInError)
 
   useEffect(() => {
-    setIsErrorState(isInError);
-  }, [isInError]);
+    setIsErrorState(isInError)
+  }, [isInError])
 
   const handleFocus = () => {
     if (isErrorState) {
-      inputChangeText('');
-      setIsErrorState(false);
+      inputChangeText('')
+      setIsErrorState(false)
     }
-  };
+  }
 
   const handleBlur = () => {
     if (isFailingValidation) {
-      setIsErrorState(true);
+      setIsErrorState(true)
     }
-  };
+  }
 
   return (
     <View pointerEvents={editableStatus ? 'auto' : 'none'}>
@@ -44,14 +44,14 @@ const MemberFormInputFields = ({
         autoCorrect={false}
       />
     </View>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   label: {
     fontSize: 20,
     marginBottom: 10,
-    marginLeft: 5,
+    marginLeft: 5
   },
   input: {
     fontSize: 18,
@@ -59,18 +59,18 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     borderColor: 'black',
     padding: 5,
-    margin: 5,
+    margin: 5
   },
   inputError: {
     color: 'red',
-    borderColor: 'red',
-  },
-});
+    borderColor: 'red'
+  }
+})
 
 MemberFormInputFields.defaultProps = {
   isFailingValidation: false,
   errorMessage: null,
-  isInError: false,
-};
+  isInError: false
+}
 
-export default MemberFormInputFields;
+export default MemberFormInputFields

@@ -1,3 +1,5 @@
+import { expect } from 'detox'
+
 describe('Example', () => {
   beforeAll(async () => {
     await device.launchApp({ newInstance: true })

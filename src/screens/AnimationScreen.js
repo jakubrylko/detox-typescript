@@ -1,56 +1,56 @@
-import React, { useState } from 'react';
+import { useState } from 'react'
 import {
-  SafeAreaView,
-  View,
-  StyleSheet,
   Animated,
   Easing,
+  SafeAreaView,
+  StyleSheet,
   Switch,
-} from 'react-native';
+  View
+} from 'react-native'
 
 const AnimationScreen = () => {
-  const [rotateValue] = useState(new Animated.Value(0));
-  const [isAnimationStarted, setIsAnimationStarted] = useState(false);
-  const [isEnabled, setIsEnabled] = useState(false);
+  const [rotateValue] = useState(new Animated.Value(0))
+  const [isAnimationStarted, setIsAnimationStarted] = useState(false)
+  const [isEnabled, setIsEnabled] = useState(false)
 
   const toggleSwitch = () => {
-    setIsEnabled((previousState) => !previousState);
-    handleToggleAnimation();
-  };
+    setIsEnabled((previousState) => !previousState)
+    handleToggleAnimation()
+  }
 
   const handleToggleAnimation = () => {
     if (isAnimationStarted) {
-      return StopImageRotate();
+      return StopImageRotate()
     }
-    return StartImageRotate();
-  };
+    return StartImageRotate()
+  }
 
   const StartImageRotate = () => {
-    setIsAnimationStarted(true);
+    setIsAnimationStarted(true)
     Animated.loop(
       Animated.timing(rotateValue, {
         toValue: 1,
         duration: 3000,
         easing: Easing.linear,
-        useNativeDriver: false,
-      }),
-    ).start();
-  };
+        useNativeDriver: false
+      })
+    ).start()
+  }
 
   const StopImageRotate = () => {
-    setIsAnimationStarted(false);
+    setIsAnimationStarted(false)
 
     Animated.timing(rotateValue, {
       toValue: 0,
       duration: 3000,
-      useNativeDriver: false,
-    }).stop();
-  };
+      useNativeDriver: false
+    }).stop()
+  }
 
   const RotateData = rotateValue.interpolate({
     inputRange: [0, 1],
-    outputRange: ['0deg', '360deg'],
-  });
+    outputRange: ['0deg', '360deg']
+  })
 
   return (
     <SafeAreaView>
@@ -58,8 +58,8 @@ const AnimationScreen = () => {
         <Animated.Image
           style={{
             height: 230,
-            transform: [{rotate: RotateData}],
-            width: 250,
+            transform: [{ rotate: RotateData }],
+            width: 250
           }}
           source={require('../assets/star.png')}
         />
@@ -73,28 +73,28 @@ const AnimationScreen = () => {
         />
       </View>
     </SafeAreaView>
-  );
-};
+  )
+}
 
 AnimationScreen.navigationOptions = {
   headerTitle: 'Animation',
-  headerTitleAlign: 'center',
-};
+  headerTitleAlign: 'center'
+}
 
 const styles = StyleSheet.create({
   container: {
     justifyContent: 'center',
-    alignSelf: 'center',
+    alignSelf: 'center'
   },
   image: {
     height: 400,
-    width: 350,
+    width: 350
   },
   switch: {
     width: 50,
     alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+    justifyContent: 'center'
+  }
+})
 
-export default AnimationScreen;
+export default AnimationScreen

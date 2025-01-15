@@ -1,6 +1,5 @@
-import React from 'react';
-import { Text, StyleSheet, View } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { StyleSheet, Text, View } from 'react-native'
+import { TouchableOpacity } from 'react-native-gesture-handler'
 
 const HomeComponents = ({ text, background, navigationScreen }) => {
   return (
@@ -9,8 +8,8 @@ const HomeComponents = ({ text, background, navigationScreen }) => {
         <Text style={styles.text}>{text}</Text>
       </View>
     </TouchableOpacity>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   sections: {
@@ -24,8 +23,8 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 30,
-    alignSelf: 'center',
-  },
-});
+    alignSelf: 'center'
+  }
+})
 
-export default HomeComponents;
+export default HomeComponents

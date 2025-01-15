@@ -1,19 +1,18 @@
-import React from 'react';
-import { SafeAreaView, ScrollView } from 'react-native';
-import ImageComponents from '../components/ImageComponents';
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import { SafeAreaView, ScrollView } from 'react-native'
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
+import ImageComponents from '../components/ImageComponents'
 
 const ImagesScreen = () => {
   return (
-    <SafeAreaView style={{marginBottom: 50}}>
+    <SafeAreaView style={{ marginBottom: 50 }}>
       <ScrollView showsVerticalScrollIndicator={false}>
         <ImageComponents title="Europe" />
         <ImageComponents title="USA / Canada" />
         <ImageComponents title="Asia" />
       </ScrollView>
     </SafeAreaView>
-  );
-};
+  )
+}
 
 ImagesScreen.navigationOptions = {
   headerTitle: 'Cities',
@@ -21,7 +20,7 @@ ImagesScreen.navigationOptions = {
   headerTitleAlign: 'center',
   title: 'Cities',
   tabBarIcon: <FontAwesome5 name="city" size={20} />,
-  tabBarAccessibilityLabel: 'Cities',
-};
+  tabBarAccessibilityLabel: 'Cities'
+}
 
-export default ImagesScreen;
+export default ImagesScreen

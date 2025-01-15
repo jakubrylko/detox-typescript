@@ -1,10 +1,16 @@
-import React from 'react';
-import { Text, View, StyleSheet, ScrollView, FlatList, Image } from 'react-native';
-import { europe, usacanada, asia } from '../data/countryData';
+import {
+  FlatList,
+  Image,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View
+} from 'react-native'
+import { asia, europe, usacanada } from '../data/countryData'
 
-const ImageComponents = ({title}) => {
+const ImageComponents = ({ title }) => {
   const cities =
-    title === 'Europe' ? europe : title === 'Asia' ? asia : usacanada;
+    title === 'Europe' ? europe : title === 'Asia' ? asia : usacanada
 
   return (
     <ScrollView>
@@ -16,7 +22,7 @@ const ImageComponents = ({title}) => {
         showsHorizontalScrollIndicator={false}
         keyExtractor={(city) => city.name}
         data={cities}
-        renderItem={({item}) => {
+        renderItem={({ item }) => {
           return (
             <View style={styles.imageContainer}>
               <Text style={styles.imageText}>{item.name}</Text>
@@ -26,12 +32,12 @@ const ImageComponents = ({title}) => {
                 source={item.imagePath}
               />
             </View>
-          );
+          )
         }}
       />
     </ScrollView>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   headerContainer: {
@@ -41,30 +47,30 @@ const styles = StyleSheet.create({
     height: 60,
     paddingTop: 15,
     shadowColor: '#000',
-    shadowOffset: {width: 0, height: 2},
+    shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.2,
     elevation: 2,
-    position: 'relative',
+    position: 'relative'
   },
   headerText: {
-    fontSize: 25,
+    fontSize: 25
   },
   imageContainer: {
     marginTop: 10,
     marginLeft: 15,
-    marginRight: 15,
+    marginRight: 15
   },
   imageText: {
     fontSize: 20,
     marginBottom: 5,
-    alignSelf: 'center',
+    alignSelf: 'center'
   },
   image: {
     width: 250,
     height: 150,
     borderRadius: 4,
-    marginBottom: 5,
-  },
-});
+    marginBottom: 5
+  }
+})
 
-export default ImageComponents;
+export default ImageComponents

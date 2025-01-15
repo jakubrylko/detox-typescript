@@ -1,23 +1,22 @@
-import React, { useContext } from 'react';
-import { Text } from 'react-native';
-import MemberContext from '../../context/MemberContext';
-import MemberForm from '../../components/memberComponents/MemberForm';
+import { useContext } from 'react'
+import MemberForm from '../../components/memberComponents/MemberForm'
+import MemberContext from '../../context/MemberContext'
 
 const AddMemberScreen = ({ navigation }) => {
-  const { addMember } = useContext(MemberContext);
+  const { addMember } = useContext(MemberContext)
 
   return (
     <MemberForm
       onSubmit={(newMember) => {
-        addMember(newMember, () => navigation.navigate('Members'));
+        addMember(newMember, () => navigation.navigate('Members'))
       }}
     />
-  );
-};
+  )
+}
 
 AddMemberScreen.navigationOptions = {
   headerTitle: 'Add Member',
-  headerTitleAlign: 'center',
-};
+  headerTitleAlign: 'center'
+}
 
-export default AddMemberScreen;
+export default AddMemberScreen

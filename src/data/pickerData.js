@@ -6,8 +6,8 @@ export const weekDays = [
   'Thursday',
   'Friday',
   'Saturday',
-  'Sunday',
-];
+  'Sunday'
+]
 
 export const countryList = [
   'Pick a country',
@@ -259,5 +259,5 @@ export const countryList = [
   'Yemen',
   'Zambia',
   'Zimbabwe',
-  'Åland Islands',
-];
+  'Åland Islands'
+]

@@ -1,12 +1,12 @@
-import React, { useContext } from 'react';
-import MemberContext from '../../context/MemberContext';
-import MemberForm from '../../components/memberComponents/MemberForm';
+import { useContext } from 'react'
+import MemberForm from '../../components/memberComponents/MemberForm'
+import MemberContext from '../../context/MemberContext'
 
 const EditMemberScreen = ({ navigation }) => {
-  const id = navigation.getParam('id');
-  const { data, editMember } = useContext(MemberContext);
+  const id = navigation.getParam('id')
+  const { data, editMember } = useContext(MemberContext)
 
-  const member = data.find((member) => member.id === id);
+  const member = data.find((member) => member.id === id)
 
   return (
     <MemberForm
@@ -22,22 +22,22 @@ const EditMemberScreen = ({ navigation }) => {
         postcode: member.postcode,
         country: member.country,
         startDate: member.startDate,
-        startTime: member.startTime,
+        startTime: member.startTime
       }}
       onSubmit={(editedMember) => {
-        editMember(id, editedMember, () => navigation.pop());
+        editMember(id, editedMember, () => navigation.pop())
       }}
     />
-  );
-};
+  )
+}
 
 EditMemberScreen.navigationOptions = ({ navigation }) => {
-  const id = navigation.getParam('id');
+  const id = navigation.getParam('id')
 
   return {
     headerTitle: `Edit Member ${id}`,
-    headerTitleAlign: 'center',
-  };
-};
+    headerTitleAlign: 'center'
+  }
+}
 
-export default EditMemberScreen;
+export default EditMemberScreen

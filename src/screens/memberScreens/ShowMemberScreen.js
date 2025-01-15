@@ -1,21 +1,20 @@
-import React, { useContext } from 'react';
+import moment from 'moment'
+import { useContext } from 'react'
 import {
+  SafeAreaView,
   ScrollView,
   StyleSheet,
-  SafeAreaView,
-  TouchableOpacity,
-  Text,
-} from 'react-native';
-import MemberContext from '../../context/MemberContext';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import MemberFields from '../../components/memberComponents/MemberFields';
-import {formatDate} from '../../utils/date';
-import moment from 'moment';
+  TouchableOpacity
+} from 'react-native'
+import FontAwesome from 'react-native-vector-icons/FontAwesome'
+import MemberFields from '../../components/memberComponents/MemberFields'
+import MemberContext from '../../context/MemberContext'
+import { formatDate } from '../../utils/date'
 
 const ShowMemberScreen = ({ navigation }) => {
-  const { data } = useContext(MemberContext);
+  const { data } = useContext(MemberContext)
 
-  const member = data.find((member) => member.id === navigation.getParam('id'));
+  const member = data.find((member) => member.id === navigation.getParam('id'))
   return (
     <ScrollView>
       <SafeAreaView>
@@ -51,27 +50,29 @@ const ShowMemberScreen = ({ navigation }) => {
         />
       </SafeAreaView>
     </ScrollView>
-  );
-};
+  )
+}
 
 ShowMemberScreen.navigationOptions = ({ navigation }) => {
-  const id = navigation.getParam('id');
+  const id = navigation.getParam('id')
 
   return {
     headerTitle: `Member ${id}`,
     headerTitleAlign: 'center',
     headerRight: () => (
-      <TouchableOpacity onPress={() => navigation.navigate('EditMember', {id})}>
+      <TouchableOpacity
+        onPress={() => navigation.navigate('EditMember', { id })}
+      >
         <FontAwesome style={styles.editIcon} name="pencil" size={25} />
       </TouchableOpacity>
-    ),
-  };
-};
+    )
+  }
+}
 
 const styles = StyleSheet.create({
   editIcon: {
-    paddingRight: 5,
-  },
-});
+    paddingRight: 5
+  }
+})
 
-export default ShowMemberScreen;
+export default ShowMemberScreen

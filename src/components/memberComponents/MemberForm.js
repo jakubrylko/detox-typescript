@@ -1,32 +1,32 @@
-import React, { useState} from 'react';
-import { ScrollView, SafeAreaView} from 'react-native';
-import { Button} from 'react-native-elements';
-import MemberFormInputFields from './MemberFormInputFields';
-import MemberFormDateFields from './MemberFormDateFields';
-import MemberFormTimeFields from './MemberFormTimeFields';
-import MemberFormPickerFields from './MemberFormPickerFields';
-import MemberFormCalendarFields from './MemberFormCalendarFields';
+import { useState } from 'react'
+import { SafeAreaView, ScrollView } from 'react-native'
+import { Button } from 'react-native-elements'
+import MemberFormCalendarFields from './MemberFormCalendarFields'
+import MemberFormDateFields from './MemberFormDateFields'
+import MemberFormInputFields from './MemberFormInputFields'
+import MemberFormPickerFields from './MemberFormPickerFields'
+import MemberFormTimeFields from './MemberFormTimeFields'
 
-const emailRegex = new RegExp(/^\S+@\S+\.\S+$/);
+const emailRegex = new RegExp(/^\S+@\S+\.\S+$/)
 
-const MemberForm = ({ onSubmit, initialValues}) => {
-  const [name, setName] = useState(initialValues.name);
-  const [surname, setSurname] = useState(initialValues.surname);
-  const [email, setEmail] = useState(initialValues.email);
-  const [dateOfBirth, setDateOfBirth] = useState(initialValues.dateOfBirth);
+const MemberForm = ({ onSubmit, initialValues }) => {
+  const [name, setName] = useState(initialValues.name)
+  const [surname, setSurname] = useState(initialValues.surname)
+  const [email, setEmail] = useState(initialValues.email)
+  const [dateOfBirth, setDateOfBirth] = useState(initialValues.dateOfBirth)
   const [addressLineOne, setAddressLineOne] = useState(
-    initialValues.addressLineOne,
-  );
+    initialValues.addressLineOne
+  )
   const [addressLineTwo, setAddressLineTwo] = useState(
-    initialValues.addressLineTwo,
-  );
-  const [city, setCity] = useState(initialValues.city);
-  const [postcode, setPostcode] = useState(initialValues.postcode);
-  const [country, setCountry] = useState(initialValues.country);
-  const [startDate, setStartDate] = useState(initialValues.startDate);
-  const [startTime, setStartTime] = useState(initialValues.startTime);
-  const [startDay, setStartDay] = useState(initialValues.startDay);
-  const [fieldsOnError, setFieldsOnError] = useState([]);
+    initialValues.addressLineTwo
+  )
+  const [city, setCity] = useState(initialValues.city)
+  const [postcode, setPostcode] = useState(initialValues.postcode)
+  const [country, setCountry] = useState(initialValues.country)
+  const [startDate, setStartDate] = useState(initialValues.startDate)
+  const [startTime, setStartTime] = useState(initialValues.startTime)
+  const [startDay, setStartDay] = useState(initialValues.startDay)
+  const [fieldsOnError, setFieldsOnError] = useState([])
 
   const handleSubmit = () => {
     const valuesToSubmit = {
@@ -41,29 +41,29 @@ const MemberForm = ({ onSubmit, initialValues}) => {
       postcode,
       country,
       startDate,
-      startTime,
-    };
+      startTime
+    }
 
     const errors = Object.keys(valuesToSubmit).filter((key) => {
       // not required
       if (key === 'addressLineTwo') {
-        return false;
+        return false
       }
 
-      return !valuesToSubmit[key];
-    });
+      return !valuesToSubmit[key]
+    })
 
     if (errors.length > 0) {
-      return setFieldsOnError(errors);
+      return setFieldsOnError(errors)
     }
 
-    setFieldsOnError([]);
-    onSubmit(valuesToSubmit);
-  };
+    setFieldsOnError([])
+    onSubmit(valuesToSubmit)
+  }
 
   return (
     <ScrollView>
-      <SafeAreaView style={{margin: 5}}>
+      <SafeAreaView style={{ margin: 5 }}>
         <MemberFormInputFields
           labelAndPlaceholder="Name"
           inputValue={name}
@@ -176,8 +176,8 @@ const MemberForm = ({ onSubmit, initialValues}) => {
         <Button title="Save Member" onPress={handleSubmit} />
       </SafeAreaView>
     </ScrollView>
-  );
-};
+  )
+}
 
 MemberForm.defaultProps = {
   initialValues: {
@@ -191,8 +191,8 @@ MemberForm.defaultProps = {
     postcode: '',
     country: '',
     startDate: '',
-    startDay: '',
-  },
-};
+    startDay: ''
+  }
+}
 
-export default MemberForm;
+export default MemberForm

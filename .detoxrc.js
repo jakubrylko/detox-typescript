@@ -1,53 +1,45 @@
-module.exports = {
-  testRunner: {
-    args: {
-      $0: 'jest',
-      config: 'jest.config.js'
-    },
-    jest: {
-      setupTimeout: 120000
+export const testRunner = {
+  args: {
+    $0: 'jest',
+    config: 'jest.config.js'
+  },
+  jest: {
+    setupTimeout: 120000
+  }
+};
+export const apps = {
+  ios: {
+    type: 'ios.app',
+    binaryPath: 'ios/build/Build/Products/Debug-iphonesimulator/pqaa_detox.app',
+    build: 'xcodebuild -workspace ios/pqaa_detox.xcworkspace -scheme pqaa_detox -configuration Debug -sdk iphonesimulator -derivedDataPath ios/build'
+  },
+  android: {
+    type: 'android.apk',
+    binaryPath: 'android/app/build/outputs/apk/debug/app-debug.apk',
+    build: 'cd android && ./gradlew assembleDebug assembleAndroidTest -DtestBuildType=debug'
+  }
+};
+export const devices = {
+  simulator: {
+    type: 'ios.simulator',
+    device: {
+      type: 'iPhone 15'
     }
   },
-
-  apps: {
-    ios: {
-      type: 'ios.app',
-      binaryPath:
-        'ios/build/Build/Products/Debug-iphonesimulator/pqaa_detox.app',
-      build:
-        'xcodebuild -workspace ios/pqaa_detox.xcworkspace -scheme pqaa_detox -configuration Debug -sdk iphonesimulator -derivedDataPath ios/build'
-    },
-    android: {
-      type: 'android.apk',
-      binaryPath: 'android/app/build/outputs/apk/debug/app-debug.apk',
-      build:
-        'cd android && ./gradlew assembleDebug assembleAndroidTest -DtestBuildType=debug'
-    }
-  },
-
-  devices: {
-    simulator: {
-      type: 'ios.simulator',
-      device: {
-        type: 'iPhone 15'
-      }
-    },
-    emulator: {
-      type: 'android.emulator',
-      device: {
-        avdName: 'Pixel_8_API_35'
-      }
-    }
-  },
-
-  configurations: {
-    ios: {
-      device: 'simulator',
-      app: 'ios'
-    },
-    android: {
-      device: 'emulator',
-      app: 'android'
+  emulator: {
+    type: 'android.emulator',
+    device: {
+      avdName: 'Pixel_8_API_35'
     }
   }
-}
+};
+export const configurations = {
+  ios: {
+    device: 'simulator',
+    app: 'ios'
+  },
+  android: {
+    device: 'emulator',
+    app: 'android'
+  }
+};

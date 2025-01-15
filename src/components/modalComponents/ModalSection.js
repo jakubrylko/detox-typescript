@@ -1,9 +1,8 @@
-import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { StyleSheet, View } from 'react-native'
 
 const ModalSection = ({ children }) => {
-  return <View style={styles.containerStyle}>{children}</View>;
-};
+  return <View style={styles.containerStyle}>{children}</View>
+}
 
 const styles = StyleSheet.create({
   containerStyle: {
@@ -13,8 +12,8 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     flexDirection: 'row',
     borderColor: '#ddd',
-    position: 'relative',
-  },
-});
+    position: 'relative'
+  }
+})
 
-export default ModalSection;
+export default ModalSection
