@@ -5,25 +5,10 @@ export const getAttribute = async (
 ) => {
   const attributes = await selector.atIndex(index).getAttributes()
 
-  if (!('elements' in attributes)) {
-    return attributes[attribute]
-  } else if (index !== undefined) {
+  if ('elements' in attributes) {
     return attributes.elements[index][attribute]
   } else {
-    console.log('Multiple elements returned!')
-  }
-}
-
-export const getLabel = async (
-  selector: Detox.IndexableNativeElement,
-  { index = 0 } = {}
-) => {
-  const attributes = await selector.getAttributes()
-
-  if ('elements' in attributes) {
-    return attributes.elements[index].label || ''
-  } else {
-    return attributes.label || ''
+    return attributes[attribute]
   }
 }
 
@@ -31,15 +16,16 @@ export const getText = async (
   selector: Detox.IndexableNativeElement,
   { index = 0 } = {}
 ) => {
-  const attributes = await selector.getAttributes()
+  const attributes = await selector.atIndex(index).getAttributes()
 
   if ('elements' in attributes) {
-    return attributes.elements[index].text || ''
+    return attributes.elements[index].text
   } else {
-    return attributes.text || ''
+    return attributes.text
   }
 }
 
+// Works only on iOS
 export const getNumOfElements = async (
   selector: Detox.IndexableNativeElement
 ) => {

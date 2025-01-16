@@ -4,6 +4,9 @@ import globals from 'globals'
 import tseslint from 'typescript-eslint'
 
 export default [
+  pluginJs.configs.recommended,
+  ...tseslint.configs.recommended,
+  pluginReact.configs.flat.recommended,
   {
     files: ['**/*.{js,mjs,ts}'],
     languageOptions: {
@@ -19,9 +22,11 @@ export default [
     }
   },
   {
-    ignores: ['src/**/*', 'App.js']
+    rules: {
+      '@typescript-eslint/no-unused-expressions': 'off'
+    }
   },
-  pluginJs.configs.recommended,
-  ...tseslint.configs.recommended,
-  pluginReact.configs.flat.recommended
+  {
+    ignores: ['src/**/*', 'App.js']
+  }
 ]

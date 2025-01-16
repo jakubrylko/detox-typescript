@@ -62,7 +62,7 @@ const MemberForm = ({ onSubmit, initialValues }) => {
   }
 
   return (
-    <ScrollView>
+    <ScrollView testID="memberForm-scrollView">
       <SafeAreaView style={{ margin: 5 }}>
         <MemberFormInputFields
           labelAndPlaceholder="Name"

@@ -96,7 +96,12 @@ MemberListScreen.navigationOptions = ({ navigation }) => {
     headerTitleAlign: 'center',
     headerRight: () => (
       <TouchableOpacity onPress={() => navigation.navigate('AddMember')}>
-        <AntDesign style={{ paddingRight: 15 }} name="pluscircle" size={25} />
+        <AntDesign
+          style={{ paddingRight: 15 }}
+          name="pluscircle"
+          size={25}
+          testID="addMemberBtn"
+        />
       </TouchableOpacity>
     )
   }

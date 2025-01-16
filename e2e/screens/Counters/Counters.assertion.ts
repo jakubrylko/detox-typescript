@@ -1,5 +1,5 @@
 import { expect } from 'detox'
-import { getWithAncestor, isIos, shouldBeVisible } from 'e2e/helpers'
+import { getWithAncestor, shouldBeVisible } from 'e2e/helpers'
 import {
   broadbandCounter,
   electricityCounter,
@@ -21,8 +21,8 @@ export const assertCounterValue = async (
   { value }: { value: string }
 ) => {
   const selector = getWithAncestor(
-    by.type(isIos() ? 'RCTTextView' : 'android.widget.TextView'),
+    by.id('counterValue'),
     by.label(`${counter.toLowerCase()}CounterLabel`)
-  ).atIndex(isIos() ? 1 : 0)
+  )
   await expect(selector).toHaveText(value)
 }
