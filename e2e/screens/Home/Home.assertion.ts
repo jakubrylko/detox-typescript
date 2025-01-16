@@ -5,6 +5,7 @@ import {
   citiesBtn,
   countersBtn,
   extrasBtn,
+  homeMenu,
   memberListBtn
 } from '.'
 
@@ -29,7 +30,7 @@ export const assertOrderOfMenuElements = async () => {
   ]
 
   const actualOrder = []
-  const selector = getWithAncestor(by.type('RCTTextView'), by.id('homeMenu'))
+  const selector = getWithAncestor(by.type('RCTTextView'), homeMenu)
   for (let i = 0; i < expectedOrder.length; i++) {
     const buttonText = await getText(selector, { index: i })
     actualOrder.push(buttonText)
