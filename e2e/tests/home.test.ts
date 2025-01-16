@@ -1,17 +1,14 @@
-import { assertTabBar } from 'e2e/components/TabBar'
+import * as BottomBar from 'e2e/components/BottomBar'
 import { launchApp } from 'e2e/helpers'
-import { assertHomeMenu } from 'e2e/screens/Home'
+import * as Home from 'e2e/screens/Home'
 
 describe('Home screen', () => {
   beforeEach(async () => {
     await launchApp()
   })
 
-  it('Home screen menu should be visible', async () => {
-    await assertHomeMenu()
-  })
-
-  it('Tab bar should be visible', async () => {
-    await assertTabBar()
+  it('Home screen should be visible', async () => {
+    await Home.assertMenu()
+    await BottomBar.assertIcons()
   })
 })
