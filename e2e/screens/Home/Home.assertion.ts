@@ -1,11 +1,11 @@
-import { getText, getWithAncestor, shouldBeVisible } from 'e2e/helpers'
+import { getText, shouldBeVisible } from 'e2e/helpers'
 import jestExpect from 'expect'
 import {
   animationBtn,
   citiesBtn,
   countersBtn,
   extrasBtn,
-  homeMenu,
+  homeBtnText,
   memberListBtn
 } from '.'
 
@@ -30,9 +30,8 @@ export const assertOrderOfMenuElements = async () => {
   ]
 
   const actualOrder = []
-  const selector = getWithAncestor(by.type('RCTTextView'), homeMenu)
   for (let i = 0; i < expectedOrder.length; i++) {
-    const buttonText = await getText(selector, { index: i })
+    const buttonText = await getText(homeBtnText, { index: i })
     actualOrder.push(buttonText)
   }
 

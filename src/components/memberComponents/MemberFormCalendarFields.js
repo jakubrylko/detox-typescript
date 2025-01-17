@@ -47,6 +47,7 @@ const MemberFormCalendarFields = ({
       </TouchableOpacity>
       {show && (
         <Calendar
+          testID="calendar"
           current={presentDate}
           minDate={presentDate}
           maxDate={endDate}

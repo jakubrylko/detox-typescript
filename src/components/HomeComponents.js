@@ -5,7 +5,9 @@ const HomeComponents = ({ text, background, navigationScreen }) => {
   return (
     <TouchableOpacity onPress={navigationScreen}>
       <View style={styles.sections} backgroundColor={background}>
-        <Text style={styles.text}>{text}</Text>
+        <Text style={styles.text} testID="homeButtonText">
+          {text}
+        </Text>
       </View>
     </TouchableOpacity>
   )
