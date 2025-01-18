@@ -1,11 +1,10 @@
-import { getText, shouldBeVisible } from 'e2e/helpers'
+import { getById, getText, shouldBeVisible } from 'e2e/helpers'
 import jestExpect from 'expect'
 import {
   animationBtn,
   citiesBtn,
   countersBtn,
   extrasBtn,
-  homeBtnText,
   memberListBtn
 } from '.'
 
@@ -19,7 +18,6 @@ export const assertMenu = async () => {
   ])
 }
 
-// Works only on iOS
 export const assertOrderOfMenuElements = async () => {
   const expectedOrder = [
     'Counters',
@@ -31,7 +29,7 @@ export const assertOrderOfMenuElements = async () => {
 
   const actualOrder = []
   for (let i = 0; i < expectedOrder.length; i++) {
-    const buttonText = await getText(homeBtnText, { index: i })
+    const buttonText = await getText(getById('homeButtonText'), { index: i })
     actualOrder.push(buttonText)
   }
 
