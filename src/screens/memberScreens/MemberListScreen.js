@@ -52,11 +52,11 @@ const MemberListScreen = ({ navigation }) => {
             >
               <View style={styles.row}>
                 <View style={{ flexDirection: 'row' }}>
-                  <Text style={{ fontSize: 20 }}>
-                    {item.name} {item.surname} -
+                  <Text testID="memberList-fullName" style={{ fontSize: 20 }}>
+                    {item.name} {item.surname}
                   </Text>
                   <Text style={{ fontSize: 20, paddingLeft: 5 }}>
-                    {item.id}
+                    - {item.id}
                   </Text>
                 </View>
                 <TouchableOpacity onPress={() => setModal(true)}>
@@ -84,7 +84,7 @@ const MemberListScreen = ({ navigation }) => {
       {data && data.length ? (
         renderList()
       ) : (
-        <Text>No Members added in the list</Text>
+        <Text>No members added in the list</Text>
       )}
     </SafeAreaView>
   )
@@ -96,7 +96,12 @@ MemberListScreen.navigationOptions = ({ navigation }) => {
     headerTitleAlign: 'center',
     headerRight: () => (
       <TouchableOpacity onPress={() => navigation.navigate('AddMember')}>
-        <AntDesign style={{ paddingRight: 15 }} name="pluscircle" size={25} />
+        <AntDesign
+          style={{ paddingRight: 15 }}
+          name="pluscircle"
+          size={25}
+          testID="addMemberBtn"
+        />
       </TouchableOpacity>
     )
   }

@@ -59,6 +59,7 @@ const MemberFormTimeFields = ({
             is24Hour={true}
             display="spinner"
             onChange={onChange}
+            testID="timePicker"
           />
           {Platform.OS === 'ios' && (
             <View>
@@ -66,11 +67,13 @@ const MemberFormTimeFields = ({
                 style={{ margin: 5 }}
                 title="Confirm"
                 onPress={() => onConfirm(lastTime)}
+                testID="timePicker-confirm"
               />
               <Button
                 style={{ margin: 5, paddingBottom: 10 }}
                 title="Cancel"
                 onPress={() => cancelChange()}
+                testID="timePicker-cancel"
               />
             </View>
           )}

@@ -1,4 +1,3 @@
-import { expect } from 'detox'
 import { getAttribute, waitUntilNotVisible, waitUntilVisible } from '.'
 
 export const shouldBeVisible = async (target: DetoxTarget) => {
@@ -27,16 +26,6 @@ export const isElementVisible = async (
 ) => {
   try {
     return Boolean(await getAttribute(element, 'visible', { index }))
-  } catch {
-    return false
-  }
-}
-
-export const doesElementExist = async (
-  element: Detox.IndexableNativeElement
-) => {
-  try {
-    return Boolean(await expect(element).toExist())
   } catch {
     return false
   }

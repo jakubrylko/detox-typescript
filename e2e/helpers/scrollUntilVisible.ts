@@ -3,7 +3,7 @@ export const scrollUntilVisible = async (
   scroll: Detox.NativeMatcher,
   {
     visibility = 75,
-    pixels = 100,
+    pixels = 200,
     direction = 'down',
     startPositionX = 0.5,
     startPositionY = 0.8

@@ -4,6 +4,8 @@ export const getByLabel = (label: DetoxMatcher) => element(by.label(label))
 
 export const getByText = (text: DetoxMatcher) => element(by.text(text))
 
+export const getByTraits = (traits: string[]) => element(by.traits(traits))
+
 export const getByType = (type: string) => element(by.type(type))
 
 export const getByDoubleMatcher = (

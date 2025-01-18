@@ -62,7 +62,7 @@ const MemberForm = ({ onSubmit, initialValues }) => {
   }
 
   return (
-    <ScrollView>
+    <ScrollView testID="memberForm-scrollView">
       <SafeAreaView style={{ margin: 5 }}>
         <MemberFormInputFields
           labelAndPlaceholder="Name"
@@ -173,7 +173,11 @@ const MemberForm = ({ onSubmit, initialValues }) => {
           isInError={fieldsOnError.includes('startTime') && !startTime}
         />
 
-        <Button title="Save Member" onPress={handleSubmit} />
+        <Button
+          testID="saveMemberBtn"
+          title="Save Member"
+          onPress={handleSubmit}
+        />
       </SafeAreaView>
     </ScrollView>
   )

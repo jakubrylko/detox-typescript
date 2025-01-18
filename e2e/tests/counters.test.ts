@@ -15,25 +15,25 @@ describe('Counters', () => {
     await Home.assertMenu()
   })
 
-  it('Water counter should work', async () => {
+  it('Water counter', async () => {
     await Counters.assertCounterValue('Water', { value: '0' })
     await Counters.tapOnButton('Water')
     await Counters.assertCounterValue('Water', { value: '1' })
   })
 
-  it('Electricity counter should work', async () => {
+  it('Electricity counter', async () => {
     await Counters.assertCounterValue('Electricity', { value: '0' })
     await Counters.tapOnButton('Electricity', { times: 3 })
     await Counters.assertCounterValue('Electricity', { value: '3' })
   })
 
-  it('Gas counter should work', async () => {
+  it('Gas counter', async () => {
     await Counters.assertCounterValue('Gas', { value: '0' })
     await Counters.tapOnButton('Gas', { times: 5 })
     await Counters.assertCounterValue('Gas', { value: '5' })
   })
 
-  it('Broadband counter should work', async () => {
+  it('Broadband counter', async () => {
     await Counters.assertCounterValue('Broadband', { value: '0' })
     await Counters.tapOnButton('Broadband', { times: 7 })
     await Counters.assertCounterValue('Broadband', { value: '7' })

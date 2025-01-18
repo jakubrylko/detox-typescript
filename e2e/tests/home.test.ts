@@ -7,8 +7,9 @@ describe('Home screen', () => {
     await launchApp()
   })
 
-  it('Home screen should be visible', async () => {
+  it('Home menu and bottom bar', async () => {
     await Home.assertMenu()
     await BottomBar.assertIcons()
+    await Home.assertOrderOfMenuElements()
   })
 })

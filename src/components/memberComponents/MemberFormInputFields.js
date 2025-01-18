@@ -34,6 +34,7 @@ const MemberFormInputFields = ({
     <View pointerEvents={editableStatus ? 'auto' : 'none'}>
       <Text style={styles.label}>{labelAndPlaceholder}:</Text>
       <TextInput
+        testID={`formField-${labelAndPlaceholder.replace(/\s+/g, '')}`}
         style={[styles.input, isErrorState ? styles.inputError : {}]}
         placeholder={labelAndPlaceholder}
         value={isErrorState ? errorMessage : inputValue}

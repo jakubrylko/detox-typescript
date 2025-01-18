@@ -79,6 +79,7 @@ const MemberFormDateFields = ({
             maximumDate={new Date(yearMinusEighteen, presentMonth, presentDay)}
             display="default"
             onChange={handleChange}
+            testID="datePicker"
           />
           {Platform.OS === 'ios' && (
             <View>
@@ -86,11 +87,13 @@ const MemberFormDateFields = ({
                 style={{ margin: 5 }}
                 title="Confirm"
                 onPress={() => handleConfirm(pickerDate)}
+                testID="datePicker-confirm"
               />
               <Button
                 style={{ margin: 5 }}
                 title="Cancel"
                 onPress={() => handleCancelChange()}
+                testID="datePicker-cancel"
               />
             </View>
           )}

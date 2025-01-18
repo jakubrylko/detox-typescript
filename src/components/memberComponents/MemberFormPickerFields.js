@@ -39,7 +39,11 @@ const MemberFormPickerFields = ({
       </TouchableOpacity>
       {show && (
         <View style={{ flexDirection: 'column' }}>
-          <Picker selectedValue={options[0]} onValueChange={handlePickerChange}>
+          <Picker
+            selectedValue={options[0]}
+            onValueChange={handlePickerChange}
+            testID="formPicker"
+          >
             {options.map((item, index) => {
               return <Picker.Item label={item} value={item} key={index} />
             })}
