@@ -1,10 +1,15 @@
 import { faker } from '@faker-js/faker'
 import dayjs from 'dayjs'
-import { getRandomTime } from 'e2e/helpers'
+import { getCurrentYear, getRandomTime } from 'e2e/helpers'
+import { countryList } from '../../src/data/pickerData'
 
-const { date, internet, location, person } = faker
+const { date, helpers, internet, location, person } = faker
 
-const randomDateOfBirth = date.between({ from: '1980-01-01', to: '2005-12-31' })
+const maxToYear = String(getCurrentYear() - 19)
+const randomDateOfBirth = date.between({
+  from: '1980-01-01',
+  to: `${maxToYear}-12-31`
+})
 const randomStartDate = date.future()
 
 export const newMember = {
@@ -17,6 +22,7 @@ export const newMember = {
   addressTwo: location.secondaryAddress(),
   city: location.city(),
   postCode: location.zipCode(),
+  country: helpers.arrayElement(countryList.slice(1)),
   startDate: dayjs(randomStartDate).format('D MMMM YYYY'),
   startTime: getRandomTime()
 }

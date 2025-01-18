@@ -11,6 +11,7 @@ describe('Home screen', () => {
   it('Home menu and bottom bar', async () => {
     await Home.assertMenu()
     await BottomBar.assertIcons()
+    //TODO: try looping  from last element
     isIos() && (await Home.assertOrderOfMenuElements())
   })
 })

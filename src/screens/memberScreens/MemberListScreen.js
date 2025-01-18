@@ -52,11 +52,11 @@ const MemberListScreen = ({ navigation }) => {
             >
               <View style={styles.row}>
                 <View style={{ flexDirection: 'row' }}>
-                  <Text style={{ fontSize: 20 }}>
-                    {item.name} {item.surname} -
+                  <Text testID="memberList-fullName" style={{ fontSize: 20 }}>
+                    {item.name} {item.surname}
                   </Text>
                   <Text style={{ fontSize: 20, paddingLeft: 5 }}>
-                    {item.id}
+                    - {item.id}
                   </Text>
                 </View>
                 <TouchableOpacity onPress={() => setModal(true)}>
