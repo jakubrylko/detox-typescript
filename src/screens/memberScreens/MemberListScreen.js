@@ -48,6 +48,7 @@ const MemberListScreen = ({ navigation }) => {
         return (
           <View>
             <TouchableOpacity
+              testID="memberList-member"
               onPress={() => navigation.navigate('ShowMember', { id: item.id })}
             >
               <View style={styles.row}>
@@ -59,7 +60,10 @@ const MemberListScreen = ({ navigation }) => {
                     - {item.id}
                   </Text>
                 </View>
-                <TouchableOpacity onPress={() => setModal(true)}>
+                <TouchableOpacity
+                  testID="deleteMemberBtn"
+                  onPress={() => setModal(true)}
+                >
                   <FontAwesome5 style={{ fontSize: 25 }} name="trash" />
                 </TouchableOpacity>
               </View>

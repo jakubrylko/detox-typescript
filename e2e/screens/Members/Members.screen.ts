@@ -1,7 +1,7 @@
 import { expect } from 'detox'
 import * as Picker from 'e2e/components/Picker'
 import {
-  convertMonthNameToNumber,
+  convertDateToDashedFormat,
   getByText,
   getText,
   isElementVisible,
@@ -10,39 +10,30 @@ import {
 } from 'e2e/helpers'
 import { androidListView } from 'e2e/shared'
 import jestExpect from 'expect'
-import {
-  calendarRightArrow,
-  countryField,
-  dateOfBirthField,
-  formPicker,
-  scrollView,
-  startDateField,
-  startDayField,
-  startTimeField
-} from '.'
+import { calendarRightArrow, formField, formPicker, memberFormScroll } from '.'
 
 export const setDateOfBirth = async (dateOfBirth: string) => {
-  await dateOfBirthField.tap()
+  await formField('Date of Birth').tap()
 
   if (isIos()) {
     await Picker.datePicker.setDatePickerDate(dateOfBirth, 'dd-MM-yyyy')
     await Picker.dateConfirmBtn.tap()
 
-    await expect(dateOfBirthField).toHaveText(dateOfBirth)
+    await expect(formField('Date of Birth')).toHaveText(dateOfBirth)
   } else {
-    await Picker.selectRandomYear(dateOfBirth)
+    await Picker.selectYear(dateOfBirth)
     await Picker.selectRandomMonth()
     await Picker.selectRandomDay()
     await getByText('OK').tap()
 
     // Assert that the selected date of birth matches 'DD-MM-YYYY' format
-    const selectedDate = await getText(dateOfBirthField)
+    const selectedDate = await getText(formField('Date of Birth'))
     jestExpect(selectedDate).toMatch(/^\d{2}-\d{2}-\d{4}$/)
   }
 }
 
 export const setStartDay = async (day: string) => {
-  await startDayField.tap()
+  await formField('Start Day').tap()
 
   if (isIos()) {
     await formPicker.setColumnToValue(0, day)
@@ -51,11 +42,11 @@ export const setStartDay = async (day: string) => {
     await getByText(day).tap()
   }
 
-  await expect(startDayField).toHaveText(day)
+  await expect(formField('Start Day')).toHaveText(day)
 }
 
 export const selectCountry = async (country: string) => {
-  await countryField.tap()
+  await formField('Country').tap()
 
   if (isIos()) {
     await formPicker.setColumnToValue(0, country)
@@ -73,33 +64,31 @@ export const selectCountry = async (country: string) => {
     }
   }
 
-  await expect(countryField).toHaveText(country)
+  await expect(formField('Country')).toHaveText(country)
 }
 
 export const setStartDate = async (startDate: string) => {
   const [day, month, year] = startDate.split(' ')
-  const monthNumber = convertMonthNameToNumber(startDate)
+  const dashedDate = convertDateToDashedFormat(startDate)
 
-  await startDateField.tap()
-  await element(scrollView).swipe('up')
+  await formField('Start Date').tap()
+  await element(memberFormScroll).swipe('up')
 
   while (!(await isElementVisible(getByText(`${month} ${year}`)))) {
     await calendarRightArrow.tap()
   }
 
   await getByText(day).tap()
-  await expect(startDateField).toHaveText(
-    `${day.padStart(2, '0')}-${monthNumber}-${year}`
-  )
+  await expect(formField('Start Date')).toHaveText(dashedDate)
 }
 
 export const setStartTime = async (startTime: string) => {
   const [hour, minutes] = startTime.split(':')
-  await startTimeField.tap()
+  await formField('Start Time').tap()
 
   if (isIos()) {
     await Picker.timePicker.setDatePickerDate(startTime, 'HH:mm')
-    await element(scrollView).swipe('up')
+    await element(memberFormScroll).swipe('up')
     await Picker.timeConfirmBtn.tap()
   } else {
     await replaceAndSubmit(Picker.hourPicker, hour)
@@ -107,5 +96,5 @@ export const setStartTime = async (startTime: string) => {
     await getByText('OK').tap()
   }
 
-  await expect(startTimeField).toHaveText(startTime)
+  await expect(formField('Start Time')).toHaveText(startTime)
 }

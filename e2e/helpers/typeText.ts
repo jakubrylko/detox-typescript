@@ -13,3 +13,12 @@ export const replaceAndSubmit = async (
   await element.replaceText(text)
   await element.tapReturnKey()
 }
+
+export const editAndSubmit = async (
+  element: Detox.NativeElement,
+  text: string
+) => {
+  await element.clearText()
+  await element.typeText(text)
+  await element.tapReturnKey()
+}
