@@ -1,12 +1,12 @@
 import { faker } from '@faker-js/faker'
-import { getByText, getCurrentYear, isElementVisible } from 'e2e/helpers'
+import { getByText, isElementVisible } from 'e2e/helpers'
 import { androidImageBtn, androidListView, androidViewPager } from 'e2e/shared'
+import { yearPicker } from '.'
 
-export const selectRandomYear = async (dateOfBirth: string) => {
-  const defaultYear = String(getCurrentYear() - 18)
+export const selectYear = async (dateOfBirth: string) => {
   const targetYear = dateOfBirth.slice(-4)
 
-  await getByText(defaultYear).tap()
+  await yearPicker.tap()
   while (!(await isElementVisible(getByText(targetYear)))) {
     await androidListView.swipe('down', 'slow', 0.3)
   }

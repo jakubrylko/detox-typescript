@@ -1,4 +1,5 @@
 import { faker } from '@faker-js/faker'
+import dayjs from 'dayjs'
 
 export const getCurrentYear = () => new Date().getFullYear()
 
@@ -9,7 +10,5 @@ export const getRandomTime = () => {
   return `${hour}:${minutes}`
 }
 
-export const convertMonthNameToNumber = (dateString: string) => {
-  const date = new Date(dateString)
-  return String(date.getMonth() + 1).padStart(2, '0')
-}
+export const convertDateToDashedFormat = (dateString: string) =>
+  dayjs(dateString).format('DD-MM-YYYY')

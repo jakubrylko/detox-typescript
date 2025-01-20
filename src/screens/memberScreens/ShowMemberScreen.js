@@ -9,14 +9,14 @@ import {
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import MemberFields from '../../components/memberComponents/MemberFields'
 import MemberContext from '../../context/MemberContext'
-import { formatDate } from '../../utils/date'
+import { formatDate } from '../../utils'
 
 const ShowMemberScreen = ({ navigation }) => {
   const { data } = useContext(MemberContext)
 
   const member = data.find((member) => member.id === navigation.getParam('id'))
   return (
-    <ScrollView>
+    <ScrollView testID="showMember-scrollView">
       <SafeAreaView>
         <MemberFields labelText="ID" fieldValue={member.id} />
         <MemberFields labelText="Name" fieldValue={member.name} />
@@ -61,6 +61,7 @@ ShowMemberScreen.navigationOptions = ({ navigation }) => {
     headerTitleAlign: 'center',
     headerRight: () => (
       <TouchableOpacity
+        testID="editMemberBtn"
         onPress={() => navigation.navigate('EditMember', { id })}
       >
         <FontAwesome style={styles.editIcon} name="pencil" size={25} />

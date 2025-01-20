@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { View } from 'react-native'
 import { Button } from 'react-native-elements'
 import { TouchableOpacity } from 'react-native-gesture-handler'
-import { formatDate } from '../../utils/date'
+import { formatDate } from '../../utils'
 import MemberFormInputFields from './MemberFormInputFields'
 
 const presentDate = new Date()

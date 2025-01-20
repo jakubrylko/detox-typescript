@@ -1,11 +1,17 @@
 import { StyleSheet, View } from 'react-native'
 import { Text } from 'react-native-elements'
+import { removeSpaces } from '../../utils'
 
 const MemberFields = ({ labelText, fieldValue }) => {
   return (
     <View>
       <Text style={styles.label}>{labelText}</Text>
-      <Text style={styles.field}>{fieldValue}</Text>
+      <Text
+        testID={`memberField-${removeSpaces(labelText)}`}
+        style={styles.field}
+      >
+        {fieldValue}
+      </Text>
     </View>
   )
 }
