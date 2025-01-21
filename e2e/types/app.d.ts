@@ -13,3 +13,5 @@ type FormField =
   | 'Country'
   | 'Start Date'
   | 'Start Time'
+
+type NavBarIcon = 'Home' | 'Cities' | 'Members'

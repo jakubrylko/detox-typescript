@@ -1,7 +1,7 @@
 import { faker } from '@faker-js/faker'
 import dayjs from 'dayjs'
 import { getCurrentYear, getRandomTime } from 'e2e/helpers'
-import { countryList } from '../../src/data/pickerData'
+import { countryList } from '../../src/data'
 
 const { date, helpers, internet, location, person } = faker
 

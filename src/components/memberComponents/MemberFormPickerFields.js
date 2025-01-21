@@ -1,7 +1,7 @@
 import { Picker } from '@react-native-picker/picker'
 import { useState } from 'react'
 import { TouchableOpacity, View } from 'react-native'
-import { countryList, weekDays } from '../../data/pickerData'
+import { countryList, weekDays } from '../../data'
 import MemberFormInputFields from './MemberFormInputFields'
 
 const MemberFormPickerFields = ({

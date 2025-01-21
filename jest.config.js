@@ -7,5 +7,7 @@ module.exports = {
   reporters: ['detox/runners/jest/reporter'],
   testEnvironment: 'detox/runners/jest/testEnvironment',
   verbose: true,
-  moduleNameMapper: { 'e2e/(.*)': '<rootDir>/e2e/$1' }
+  moduleNameMapper: {
+    'e2e/(.*)': '<rootDir>/e2e/$1'
+  }
 }

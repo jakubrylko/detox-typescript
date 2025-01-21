@@ -18,6 +18,7 @@ const ImageComponents = ({ title }) => {
         <Text style={styles.headerText}>{title}</Text>
       </View>
       <FlatList
+        testID={`images-horizontalScroll-${title}`}
         horizontal
         showsHorizontalScrollIndicator={false}
         keyExtractor={(city) => city.name}
