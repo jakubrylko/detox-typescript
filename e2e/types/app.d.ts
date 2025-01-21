@@ -1,5 +1,7 @@
 type Counter = 'Water' | 'Electricity' | 'Gas' | 'Broadband'
 
+type CountryList = 'Europe' | 'USA / Canada' | 'Asia'
+
 type FormField =
   | 'Name'
   | 'Surname'

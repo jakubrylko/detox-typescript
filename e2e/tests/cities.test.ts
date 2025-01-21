@@ -1,11 +1,8 @@
-import {
-  getByText,
-  launchApp,
-  scrollUntilVisible,
-  shouldBeVisible
-} from 'e2e/helpers'
+import * as Header from 'e2e/components/Header'
+import { launchApp } from 'e2e/helpers'
+import * as Cities from 'e2e/screens/Cities'
 import * as Home from 'e2e/screens/Home'
-import { europe } from '../../src/data'
+import { asia, europe, usacanada } from '../../src/data'
 
 describe('Cities', () => {
   beforeEach(async () => {
@@ -15,15 +12,17 @@ describe('Cities', () => {
   it('City lists', async () => {
     await Home.citiesBtn.tap()
 
-    const imagesHorizontalScroll = by.id('images-horizontalScroll-Europe')
+    const europeNames = europe.map((city) => city.name)
+    await Cities.assertCountryList('Europe', europeNames)
 
-    for (const country of europe) {
-      const selector = getByText(country.name)
-      await scrollUntilVisible(selector, imagesHorizontalScroll, {
-        visibility: 100,
-        direction: 'right'
-      })
-      await shouldBeVisible(selector)
-    }
+    const americaNames = usacanada.map((city) => city.name)
+    await Cities.assertCountryList('USA / Canada', americaNames)
+
+    await Cities.imagesScroll.swipe('up')
+    const asiaNames = asia.map((city) => city.name)
+    await Cities.assertCountryList('Asia', asiaNames)
+
+    await Header.backBtn.tap()
+    await Home.assertMenu()
   })
 })
