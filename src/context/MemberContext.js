@@ -111,7 +111,7 @@ export const MemberProvider = ({ children }) => {
       let updatedMembers = await AsyncStorage.getItem(ASYNC_STORAGE_MEMBERS_KEY)
 
       if (!updatedMembers) {
-        // the first time updatedMembers should be null.
+        // The first time updatedMembers should be null.
         updatedMembers = [tmpMember]
       } else {
         updatedMembers = JSON.parse(updatedMembers)
