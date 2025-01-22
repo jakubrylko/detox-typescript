@@ -56,6 +56,7 @@ const AnimationScreen = () => {
     <SafeAreaView>
       <View style={styles.container}>
         <Animated.Image
+          testID="animationImage"
           style={{
             height: 230,
             transform: [{ rotate: RotateData }],
@@ -67,6 +68,7 @@ const AnimationScreen = () => {
 
       <View style={styles.container}>
         <Switch
+          testID="animationSwitch"
           style={styles.switch}
           onValueChange={toggleSwitch}
           value={isEnabled}
