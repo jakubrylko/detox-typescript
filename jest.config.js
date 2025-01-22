@@ -1,11 +1,13 @@
 module.exports = {
-  testMatch: ['<rootDir>/e2e/**/*.test.ts'],
-  testTimeout: 120000,
-  maxWorkers: 1,
   globalSetup: 'detox/runners/jest/globalSetup',
   globalTeardown: 'detox/runners/jest/globalTeardown',
+  maxWorkers: 1,
+  moduleNameMapper: { 'e2e/(.*)': '<rootDir>/e2e/$1' },
+  preset: 'react-native',
   reporters: ['detox/runners/jest/reporter'],
   testEnvironment: 'detox/runners/jest/testEnvironment',
-  verbose: true,
-  moduleNameMapper: { 'e2e/(.*)': '<rootDir>/e2e/$1' }
+  testMatch: ['<rootDir>/e2e/**/*.test.ts'],
+  testTimeout: 120000,
+  transform: { '\\.(jpg|jpeg|png|gif|webp|svg)$': 'jest-transform-stub' },
+  verbose: true
 }

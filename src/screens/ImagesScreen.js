@@ -5,7 +5,7 @@ import ImageComponents from '../components/ImageComponents'
 const ImagesScreen = () => {
   return (
     <SafeAreaView style={{ marginBottom: 50 }}>
-      <ScrollView showsVerticalScrollIndicator={false}>
+      <ScrollView showsVerticalScrollIndicator={false} testID="imagesScroll">
         <ImageComponents title="Europe" />
         <ImageComponents title="USA / Canada" />
         <ImageComponents title="Asia" />

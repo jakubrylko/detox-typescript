@@ -1,5 +1,7 @@
 type Counter = 'Water' | 'Electricity' | 'Gas' | 'Broadband'
 
+type CountryList = 'Europe' | 'USA / Canada' | 'Asia'
+
 type FormField =
   | 'Name'
   | 'Surname'
@@ -13,3 +15,5 @@ type FormField =
   | 'Country'
   | 'Start Date'
   | 'Start Time'
+
+type NavBarIcon = 'Home' | 'Cities' | 'Members'

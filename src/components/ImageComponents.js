@@ -6,7 +6,7 @@ import {
   Text,
   View
 } from 'react-native'
-import { asia, europe, usacanada } from '../data/countryData'
+import { asia, europe, usacanada } from '../data'
 
 const ImageComponents = ({ title }) => {
   const cities =
@@ -18,6 +18,7 @@ const ImageComponents = ({ title }) => {
         <Text style={styles.headerText}>{title}</Text>
       </View>
       <FlatList
+        testID={`horizontalScroll-${title}`}
         horizontal
         showsHorizontalScrollIndicator={false}
         keyExtractor={(city) => city.name}
@@ -27,6 +28,7 @@ const ImageComponents = ({ title }) => {
             <View style={styles.imageContainer}>
               <Text style={styles.imageText}>{item.name}</Text>
               <Image
+                testID={`image-${item.name}`}
                 style={styles.image}
                 resizeMode={'cover'}
                 source={item.imagePath}
