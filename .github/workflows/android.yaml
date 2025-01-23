@@ -45,11 +45,11 @@ jobs:
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: 31
-          arch: x86_64
+          arch: arm64
           emulator-options: '-no-audio -no-snapshot -no-window'
           profile: pixel_xl
           target: google_apis
-          script: ./gradlew connectedCheck
+          script: yes Y | sdkmanager --licenses
 
       - name: Start Metro Bundler
         run: yarn metro &
