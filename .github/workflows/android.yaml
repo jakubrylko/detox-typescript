@@ -1,0 +1,46 @@
+name: Detox Android Tests
+
+on:
+  pull_request:
+
+jobs:
+  detox-android:
+    name: Run Detox Tests on Android
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile && yarn global add detox-cli
+
+      - name: Start Metro Bundler
+        run: yarn metro
+
+      - name: Set up Android Emulator
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 31
+          arch: x86_64
+          emulator-options: '-no-audio -no-snapshot -no-window'
+          profile: Pixel_XL_API_31
+          target: system-images;android-31;google_apis;x86_64
+          script: ./gradlew connectedCheck
+
+      - name: Build Detox Android APK
+        run: yarn detox:build:android
+
+      - name: Run Detox tests
+        run: yarn detox:test:android
