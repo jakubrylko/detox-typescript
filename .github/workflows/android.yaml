@@ -30,13 +30,13 @@ jobs:
       - name: Add Android SDK to PATH
         run: echo "$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/emulator:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$ANDROID_HOME/build-tools/35.0.0" >> $GITHUB_PATH
 
-      # - name: Install Android SDK
-      #   uses: android-actions/setup-android@v2
-      #   with:
-      #     api-level: 31
-      #     build-tools-version: '35.0.0'
-      #     target: google_apis
-      #     arch: arm64-v8a
+      - name: Install Android SDK
+        uses: android-actions/setup-android@v2
+        with:
+          api-level: 31
+          build-tools-version: '35.0.0'
+          target: google_apis
+          arch: arm64-v8a
 
       # - name: Set up Android Emulator
       #   run: |
@@ -55,8 +55,16 @@ jobs:
         run: echo "no" | avdmanager --verbose create avd --force -n Pixel_XL_API_31 --abi "google_apis/arm64-v8a" -k "system-images;android-31;google_apis;arm64-v8a" --device "pixel_xl"
 
       - name: Start Emulator
-        run: nohup emulator -avd Pixel_XL_API_31 -no-snapshot -noaudio -no-boot-anim -wipe-data -netdelay none -netspeed full &
-        
+        run: |
+          nohup emulator -avd Pixel_XL_API_31 -no-snapshot -noaudio -no-boot-anim -wipe-data -netdelay none -netspeed full > emulator.log 2>&1 &
+          adb wait-for-device
+          # Wait for the emulator to complete booting
+          until adb shell getprop sys.boot_completed | grep -m 1 '1'; do
+            echo "Waiting for emulator to boot..."
+            sleep 5
+          done
+          echo "Emulator is ready!"
+
       - name: List Devices
         run: adb devices
       #      echo "no" | avdmanager --verbose create avd --force -n Pixel_XL_API_31 --abi "google_apis/arm64-v8a" -k "system-images;android-31;google_apis;arm64-v8a" --device "pixel_xl"
