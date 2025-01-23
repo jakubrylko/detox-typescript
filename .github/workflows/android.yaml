@@ -28,16 +28,19 @@ jobs:
           yarn install --frozen-lockfile 
           yarn global add detox-cli
 
-      - name: Add Android SDK to PATH
-        run: |
-          echo "$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/emulator:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$ANDROID_HOME/build-tools/35.0.0" >> $GITHUB_PATH
+      # - name: Add Android SDK to PATH
+      #   run: |
+      #     echo "$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/emulator:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$ANDROID_HOME/build-tools/35.0.0" >> $GITHUB_PATH
 
       - name: Install Android SDK
         run: |
+          echo "$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/emulator:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$ANDROID_HOME/build-tools/35.0.0" >> $GITHUB_PATH
+          source $GITHUB_PATH  
+
           yes | sdkmanager --licenses
           sdkmanager --install 'build-tools;35.0.0' platform-tools 'platforms;android-31' 'system-images;android-31;google_apis;arm64-v8a'
 
-      - name: Build emulator
+      - name: Set up Emulator
         run: |
           echo "no" | avdmanager --verbose create avd --force -n Pixel_XL_API_31 --abi "google_apis/arm64-v8a" -k "system-images;android-31;google_apis;arm64-v8a" --device "pixel_xl"
 
