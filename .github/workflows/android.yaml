@@ -34,7 +34,6 @@ jobs:
       - name: Install Android SDK components
         run: |
           yes | sdkmanager --licenses
-          sdkmanager --update
           sdkmanager --install 'build-tools;35.0.0' platform-tools 'platforms;android-31' 'system-images;android-31;google_apis;x86_64'
           sdkmanager --install emulator
           sdkmanager --install 'device-definition;Pixel_XL'
