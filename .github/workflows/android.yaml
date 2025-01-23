@@ -27,8 +27,8 @@ jobs:
       - name: Install dependencies
         run: yarn install --frozen-lockfile && yarn global add detox-cli
 
-      # - name: Add Android SDK to PATH
-      #   run: echo "$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/emulator:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$ANDROID_HOME/build-tools/35.0.0" >> $GITHUB_PATH
+      - name: Add Android SDK to PATH
+        run: echo "$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/emulator:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$ANDROID_HOME/build-tools/35.0.0" >> $GITHUB_PATH
 
       # - name: Install Android SDK
       #   uses: android-actions/setup-android@v2
@@ -38,15 +38,15 @@ jobs:
       #     target: google_apis
       #     arch: arm64-v8a
 
-      - name: Set up Android Emulator
-        run: |
-          yes | sdkmanager --licenses && sdkmanager --install 'build-tools;latest' 'platform-tools' 'platforms;android-31' 'system-images;android-31;google_apis;arm64-v8a'
+      # - name: Set up Android Emulator
+      #   run: |
+      #     yes | sdkmanager --licenses && sdkmanager --install 'build-tools;latest' 'platform-tools' 'platforms;android-31' 'system-images;android-31;google_apis;arm64-v8a'
 
-          echo "no" | avdmanager --verbose create avd --force -n Pixel_XL_API_31 --abi "google_apis/arm64-v8a" -k "system-images;android-31;google_apis;arm64-v8a" --device "pixel_xl"
+      #     echo "no" | avdmanager --verbose create avd --force -n Pixel_XL_API_31 --abi "google_apis/arm64-v8a" -k "system-images;android-31;google_apis;arm64-v8a" --device "pixel_xl"
 
-          nohup emulator -avd Pixel_XL_API_31 -no-snapshot -noaudio -no-boot-anim -wipe-data -netdelay none -netspeed full > emulator.log 2>&1 &
+      #     nohup emulator -avd Pixel_XL_API_31 -no-snapshot -noaudio -no-boot-anim -wipe-data -netdelay none -netspeed full > emulator.log 2>&1 &
 
-          adb wait-for-device shell getprop dev.bootcomplete
+      #     adb wait-for-device shell getprop dev.bootcomplete
 
       # - name: Install Android SDK
       #   run: yes | sdkmanager --licenses && sdkmanager --install 'build-tools;35.0.0' 'platform-tools' 'platforms;android-31' 'system-images;android-31;google_apis;arm64-v8a'
@@ -54,11 +54,15 @@ jobs:
       # - name: Create required emulator
       #   run: echo "no" | avdmanager --verbose create avd --force -n Pixel_XL_API_31 --abi "google_apis/arm64-v8a" -k "system-images;android-31;google_apis;arm64-v8a" --device "pixel_xl"
 
-      # - name: Start Emulator
-      #   run: |
-      #     echo "no" | avdmanager --verbose create avd --force -n Pixel_XL_API_31 --abi "google_apis/arm64-v8a" -k "system-images;android-31;google_apis;arm64-v8a" --device "pixel_xl"
+      - name: Start Emulator
+        run: |
+          yes | sdkmanager --licenses && sdkmanager --install 'build-tools;35.0.0' 'platform-tools' 'platforms;android-31' 'system-images;android-31;google_apis;arm64-v8a'
 
-      #     nohup emulator -avd Pixel_XL_API_31 -no-snapshot -noaudio -no-boot-anim -wipe-data -netdelay none -netspeed full &
+           echo "no" | avdmanager --verbose create avd --force -n Pixel_XL_API_31 --abi "google_apis/arm64-v8a" -k "system-images;android-31;google_apis;arm64-v8a" --device "pixel_xl"
+
+           nohup emulator -avd Pixel_XL_API_31 -no-snapshot -noaudio -no-boot-anim -wipe-data -netdelay none -netspeed full &
+
+           adb wait-for-device shell getprop dev.bootcomplete
 
       - name: Start Metro Bundler
         run: yarn metro &
