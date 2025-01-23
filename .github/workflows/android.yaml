@@ -56,8 +56,10 @@ jobs:
 
       - name: Start Emulator
         run: nohup emulator -avd Pixel_XL_API_31 -no-snapshot -noaudio -no-boot-anim -wipe-data -netdelay none -netspeed full &
+        
+      - name: List Devices
+        run: adb devices
       #      echo "no" | avdmanager --verbose create avd --force -n Pixel_XL_API_31 --abi "google_apis/arm64-v8a" -k "system-images;android-31;google_apis;arm64-v8a" --device "pixel_xl"
-
 
       #      adb wait-for-device shell getprop dev.bootcomplete
 
