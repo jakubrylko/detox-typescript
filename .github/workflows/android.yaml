@@ -28,12 +28,16 @@ jobs:
           yarn install --frozen-lockfile 
           yarn global add detox-cli
 
+      - name: Configure system PATH
+        run: |
+          echo "$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/emulator:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$ANDROID_HOME/build-tools/35.0.0" >> $GITHUB_PATH
+
       - name: Start Metro Bundler
         run: yarn metro &
 
-      - name: Install Android SDK components
+      - name: Install Android SDK
         run: |
-          yes | sdkmanager --licenses
+          yes Y | sdkmanager --licenses
           sdkmanager --install 'build-tools;35.0.0' platform-tools 'platforms;android-31' 'system-images;android-31;google_apis;x86_64'
           sdkmanager --install emulator
           sdkmanager --install 'device-definition;Pixel_XL'
