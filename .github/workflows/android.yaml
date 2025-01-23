@@ -56,7 +56,7 @@ jobs:
       - name: Start Metro Bundler
         run: yarn metro &
 
-      - name: Build Detox Android APK
+      - name: Build Android APK
         run: yarn detox:build:android:release
 
       - name: Run Detox Tests
