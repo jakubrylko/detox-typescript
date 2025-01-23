@@ -57,7 +57,7 @@ jobs:
         run: yarn metro &
 
       - name: Build Detox Android APK
-        run: yarn detox:build:android
+        run: yarn detox:build:android:release
 
       - name: Run Detox Tests
-        run: yarn detox:test:android
+        run: yarn detox:test:android:release

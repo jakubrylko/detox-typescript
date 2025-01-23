@@ -10,44 +10,65 @@ module.exports = {
   },
 
   apps: {
-    ios: {
+    'android.debug': {
+      type: 'android.apk',
+      binaryPath: 'android/app/build/outputs/apk/debug/app-debug.apk',
+      build:
+        'cd android && ./gradlew assembleDebug assembleAndroidTest -DtestBuildType=debug'
+    },
+    'android.release': {
+      type: 'android.apk',
+      binaryPath: 'android/app/build/outputs/apk/release/app-release.apk',
+      build:
+        'cd android && ./gradlew assembleRelease assembleAndroidTest -DtestBuildType=release'
+    },
+    'ios.debug': {
       type: 'ios.app',
       binaryPath:
         'ios/build/Build/Products/Debug-iphonesimulator/pqaa_detox.app',
       build:
         'xcodebuild -workspace ios/pqaa_detox.xcworkspace -scheme pqaa_detox -configuration Debug -sdk iphonesimulator -derivedDataPath ios/build'
     },
-    android: {
-      type: 'android.apk',
-      binaryPath: 'android/app/build/outputs/apk/debug/app-debug.apk',
+    'ios.release': {
+      type: 'ios.app',
+      binaryPath:
+        'ios/build/Build/Products/Release-iphonesimulator/pqaa_detox.app',
       build:
-        'cd android && ./gradlew assembleDebug assembleAndroidTest -DtestBuildType=debug'
+        'ENVFILE=.env.testing xcodebuild -workspace ios/pqaa_detox.xcworkspace -scheme pqaa_detox -configuration Release -sdk iphonesimulator -derivedDataPath ios/build'
     }
   },
 
   devices: {
-    simulator: {
-      type: 'ios.simulator',
-      device: {
-        type: 'iPhone 15'
-      }
-    },
     emulator: {
       type: 'android.emulator',
       device: {
         avdName: 'Pixel_XL_API_31'
       }
+    },
+    simulator: {
+      type: 'ios.simulator',
+      device: {
+        type: 'iPhone 15'
+      }
     }
   },
 
   configurations: {
-    ios: {
-      device: 'simulator',
-      app: 'ios'
-    },
-    android: {
+    'android.debug': {
       device: 'emulator',
-      app: 'android'
+      app: 'android.debug'
+    },
+    'android.release': {
+      device: 'emulator',
+      app: 'android.release'
+    },
+    'ios.debug': {
+      device: 'simulator',
+      app: 'ios.debug'
+    },
+    'ios.release': {
+      device: 'simulator',
+      app: 'ios.release'
     }
   }
 }
