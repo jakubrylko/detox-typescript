@@ -26,6 +26,8 @@ jobs:
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile && yarn global add detox-cli
+
+        ############
         # 3. Install Command Line Tools and SDK
       - name: Install Android Command Line Tools
         run: |
@@ -55,15 +57,15 @@ jobs:
             --device "pixel_xl"
 
       # 7. Start Emulator
-        - name: Start Emulator
-          run: |
-            nohup emulator -avd Pixel_XL_API_31 -no-snapshot -noaudio -no-boot-anim -wipe-data \
-              -netdelay none -netspeed full > emulator.log 2>&1 &
-            adb start-server
-            sleep 30
-            echo "Emulator process launched. Checking emulator status..."
-            adb devices
-            cat emulator.log
+      - name: Start Emulator
+        run: |
+          nohup emulator -avd Pixel_XL_API_31 -no-snapshot -noaudio -no-boot-anim -wipe-data \
+            -netdelay none -netspeed full > emulator.log 2>&1 &
+          adb start-server
+          sleep 30
+          echo "Emulator process launched. Checking emulator status..."
+          adb devices
+          cat emulator.log
 
       # 8. Verify Emulator Is Running
       - name: Verify Emulator
@@ -112,15 +114,13 @@ jobs:
       #      echo "no" | avdmanager --verbose create avd --force -n Pixel_XL_API_31 --abi "google_apis/arm64-v8a" -k "system-images;android-31;google_apis;arm64-v8a" --device "pixel_xl"
 
       #      adb wait-for-device shell getprop dev.bootcomplete
+      #################
 
-      # - name: Start Metro Bundler
-      #   run: yarn metro &
+      - name: Start Metro Bundler
+        run: yarn metro &
 
-      # - name: Set up port forwarding
-      #   run: adb reverse tcp:8081 tcp:8081
+      - name: Build Android APK
+        run: yarn detox:build:android:release
 
-      # - name: Build Android APK
-      #   run: yarn detox:build:android:release
-
-      # - name: Run Detox Tests
-      #   run: yarn detox:test:android:release
+      - name: Run Detox Tests
+        run: yarn detox:test:android:release
