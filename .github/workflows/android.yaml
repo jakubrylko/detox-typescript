@@ -37,9 +37,9 @@ jobs:
           yes Y | sdkmanager --licenses
           sdkmanager --install 'build-tools;35.0.0' platform-tools 'platforms;android-31' 'system-images;android-31;google_apis;x86_64'
 
-      - name: Build emulator
-        run: |
-          echo "no" | avdmanager --verbose create avd --force -n Pixel_XL_API_31 --abi "google_apis/x86_64" -k "system-images;android-31;google_apis;x86_64" --device "pixel_xl"
+      # - name: Build emulator
+      #   run: |
+      #     echo "no" | avdmanager --verbose create avd --force -n Pixel_XL_API_31 --abi "google_apis/x86_64" -k "system-images;android-31;google_apis;x86_64" --device "pixel_xl"
 
       - name: Set up Android Emulator
         uses: reactivecircus/android-emulator-runner@v2
@@ -47,7 +47,7 @@ jobs:
           api-level: 31
           arch: x86_64
           emulator-options: '-no-audio -no-snapshot -no-window'
-          profile: Pixel_XL_API_31
+          profile: pixel_xl
           target: google_apis
           script: ./gradlew connectedCheck
 
