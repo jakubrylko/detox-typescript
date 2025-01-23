@@ -55,18 +55,15 @@ jobs:
             --device "pixel_xl"
 
       # 7. Start Emulator
-      - name: Start Emulator
-        run: |
-          nohup emulator -avd Pixel_XL_API_31 -no-snapshot -noaudio -no-boot-anim -wipe-data \
-            -netdelay none -netspeed full > emulator.log 2>&1 &
-          adb start-server
-          adb wait-for-device
-          # Wait for the emulator to complete booting
-          until adb shell getprop sys.boot_completed | grep -m 1 '1'; do
-            echo "Waiting for emulator to boot..."
-            sleep 5
-          done
-          echo "Emulator is ready!"
+        - name: Start Emulator
+          run: |
+            nohup emulator -avd Pixel_XL_API_31 -no-snapshot -noaudio -no-boot-anim -wipe-data \
+              -netdelay none -netspeed full > emulator.log 2>&1 &
+            adb start-server
+            sleep 30
+            echo "Emulator process launched. Checking emulator status..."
+            adb devices
+            cat emulator.log
 
       # 8. Verify Emulator Is Running
       - name: Verify Emulator
