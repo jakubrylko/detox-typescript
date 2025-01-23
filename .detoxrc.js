@@ -34,7 +34,7 @@ module.exports = {
       binaryPath:
         'ios/build/Build/Products/Release-iphonesimulator/pqaa_detox.app',
       build:
-        'ENVFILE=.env.testing xcodebuild -workspace ios/pqaa_detox.xcworkspace -scheme pqaa_detox -configuration Release -sdk iphonesimulator -derivedDataPath ios/build'
+        'xcodebuild -workspace ios/pqaa_detox.xcworkspace -scheme pqaa_detox -configuration Release -sdk iphonesimulator -derivedDataPath ios/build'
     }
   },
 
