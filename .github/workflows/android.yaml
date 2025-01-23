@@ -22,37 +22,36 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
+          cache: 'yarn'
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile && yarn global add detox-cli
 
-      - name: Cache Gradle dependencies
-        uses: actions/cache@v3
-        with:
-          path: |
-            ~/.gradle/caches
-            ~/.gradle/wrapper
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
-          restore-keys: ${{ runner.os }}-gradle-
-
-      - name: Add Android SDK to PATH
-        run: echo "$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/emulator:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$ANDROID_HOME/build-tools/35.0.0" >> $GITHUB_PATH
-
       - name: Install Android SDK
-        run: yes | sdkmanager --licenses && sdkmanager --install 'build-tools;35.0.0' platform-tools 'platforms;android-31' 'system-images;android-31;google_apis;arm64-v8a'
+        uses: android-actions/setup-android@v2
+        with:
+          api-level: 31
+          build-tools-version: '35.0.0'
+          target: google_apis
+          arch: arm64-v8a
 
-      - name: Set up Emulator
-        run: echo "no" | avdmanager --verbose create avd --force -n Pixel_XL_API_31 --abi "google_apis/arm64-v8a" -k "system-images;android-31;google_apis;arm64-v8a" --device "pixel_xl"
-
-      # - name: Set up Android Emulator
-      #   uses: reactivecircus/android-emulator-runner@v2
+      # - name: Create Emulator
+      #   uses: android-actions/start-emulator@v2
       #   with:
       #     api-level: 31
       #     arch: arm64-v8a
-      #     emulator-options: '-no-audio -no-snapshot -no-window'
-      #     profile: pixel_xl
-      #     script: ./gradlew connectedCheck
-      #     target: google_apis
+      #     avd-name: Pixel_XL_API_31
+      #     force-avd-creation: true
+      #     emulator-options: -no-snapshot-save -no-window
+
+      # - name: Add Android SDK to PATH
+      #   run: echo "$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/emulator:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$ANDROID_HOME/build-tools/35.0.0" >> $GITHUB_PATH
+
+      # - name: Install Android SDK
+      #   run: yes | sdkmanager --licenses && sdkmanager --install 'build-tools;35.0.0' 'platform-tools' 'platforms;android-31' 'system-images;android-31;google_apis;arm64-v8a'
+
+      - name: Create Emulator
+        run: echo "no" | avdmanager --verbose create avd --force -n Pixel_XL_API_31 --abi "google_apis/arm64-v8a" -k "system-images;android-31;google_apis;arm64-v8a" --device "pixel_xl"
 
       - name: Start Metro Bundler
         run: yarn metro &
