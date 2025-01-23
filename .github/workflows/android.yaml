@@ -27,8 +27,8 @@ jobs:
       - name: Install dependencies
         run: yarn install --frozen-lockfile && yarn global add detox-cli
 
-      - name: Add Android SDK to PATH
-        run: echo "$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/emulator:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$ANDROID_HOME/build-tools/35.0.0" >> $GITHUB_PATH
+      # - name: Add Android SDK to PATH
+      #   run: echo "$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/emulator:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$ANDROID_HOME/build-tools/35.0.0" >> $GITHUB_PATH
 
       # - name: Install Android SDK
       #   uses: android-actions/setup-android@v2
