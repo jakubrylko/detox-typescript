@@ -24,10 +24,12 @@ jobs:
           node-version: '20'
 
       - name: Install dependencies
-        run: yarn install --frozen-lockfile && yarn global add detox-cli
+        run: |
+          yarn install --frozen-lockfile 
+          yarn global add detox-cli
 
       - name: Start Metro Bundler
-        run: yarn metro
+        run: yarn metro &
 
       - name: Set up Android Emulator
         uses: reactivecircus/android-emulator-runner@v2
@@ -42,5 +44,5 @@ jobs:
       - name: Build Detox Android APK
         run: yarn detox:build:android
 
-      - name: Run Detox tests
+      - name: Run Detox Tests
         run: yarn detox:test:android
