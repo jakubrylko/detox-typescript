@@ -1,7 +1,11 @@
+import { waitUntilVisible } from './waitUntilVisible'
+
 export const typeAndSubmit = async (
   element: Detox.NativeElement,
   text: string
 ) => {
+  await waitUntilVisible(element)
+  console.log(element)
   await element.typeText(text)
   await element.tapReturnKey()
 }

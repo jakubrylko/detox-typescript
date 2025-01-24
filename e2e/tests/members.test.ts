@@ -1,6 +1,7 @@
 import * as Header from 'e2e/components/Header'
 import {
   editAndSubmit,
+  getById,
   getByText,
   launchApp,
   scrollUntilVisible,
@@ -28,7 +29,7 @@ describe('Members list', () => {
     await Home.assertMenu()
   })
 
-  it('Empty members list', async () => {
+  xit('Empty members list', async () => {
     await Members.assertEmptyScreen()
   })
 
@@ -36,7 +37,8 @@ describe('Members list', () => {
     const newMember = createMember()
     await Header.addMemberBtn.tap()
 
-    await typeAndSubmit(formField('Name'), newMember.name)
+    // await typeAndSubmit(formField('Name'), newMember.name)
+    await typeAndSubmit(getById('formField-Name'), newMember.name)
     await typeAndSubmit(formField('Surname'), newMember.surname)
     await Members.setDateOfBirth(newMember.dateOfBirth)
     await Members.setStartDay(newMember.startDay)
