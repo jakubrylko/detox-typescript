@@ -5,7 +5,7 @@ export const typeAndSubmit = async (
   text: string
 ) => {
   await waitUntilVisible(element)
-  console.log(element)
+  console.log('typeAndSubmit: ' + element)
   await element.typeText(text)
   await element.tapReturnKey()
 }

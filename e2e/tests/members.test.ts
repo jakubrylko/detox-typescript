@@ -20,7 +20,7 @@ describe('Members list', () => {
     try {
       await Home.memberListBtn.tap()
     } catch {
-      console.log('No members button')
+      console.log('beforeEach: No members button')
     }
   })
 
