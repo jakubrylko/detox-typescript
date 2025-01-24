@@ -5,7 +5,8 @@ import {
   launchApp,
   scrollUntilVisible,
   shouldBeVisible,
-  shouldNotBeVisible
+  shouldNotBeVisible,
+  typeAndSubmit
 } from 'e2e/helpers'
 import * as Home from 'e2e/screens/Home'
 import * as Members from 'e2e/screens/Members'
@@ -33,33 +34,33 @@ describe('Members list', () => {
     const newMember = createMember()
     await Header.addMemberBtn.tap()
 
-    // await typeAndSubmit(formField('Name'), newMember.name)
-    await formField('Name').replaceText(newMember.name)
-    // await typeAndSubmit(formField('Surname'), newMember.surname)
-    await formField('Surname').replaceText(newMember.surname)
+    await typeAndSubmit(formField('Name'), newMember.name)
+    // await formField('Name').replaceText(newMember.name)
+    await typeAndSubmit(formField('Surname'), newMember.surname)
+    // await formField('Surname').replaceText(newMember.surname)
     await Members.setDateOfBirth(newMember.dateOfBirth)
     await Members.setStartDay(newMember.startDay)
 
-    // await typeAndSubmit(formField('Email'), newMember.email)
-    await formField('Email').replaceText(newMember.email)
+    await typeAndSubmit(formField('Email'), newMember.email)
+    // await formField('Email').replaceText(newMember.email)
     await scrollUntilVisible(
       formField('Address Line One'),
       Members.memberFormScroll
     )
-    // await typeAndSubmit(formField('Address Line One'), newMember.addressOne)
-    await formField('Address Line One').replaceText(newMember.addressOne)
+    await typeAndSubmit(formField('Address Line One'), newMember.addressOne)
+    // await formField('Address Line One').replaceText(newMember.addressOne)
     await scrollUntilVisible(
       formField('Address Line Two'),
       Members.memberFormScroll
     )
-    // await typeAndSubmit(formField('Address Line Two'), newMember.addressTwo)
-    await formField('Address Line Two').replaceText(newMember.addressTwo)
+    await typeAndSubmit(formField('Address Line Two'), newMember.addressTwo)
+    // await formField('Address Line Two').replaceText(newMember.addressTwo)
 
     await element(Members.memberFormScroll).swipe('up')
-    // await typeAndSubmit(formField('City'), newMember.city)
-    await formField('City').replaceText(newMember.city)
-    // await typeAndSubmit(formField('Postcode'), newMember.postCode)
-    await formField('Postcode').replaceText(newMember.postCode)
+    await typeAndSubmit(formField('City'), newMember.city)
+    // await formField('City').replaceText(newMember.city)
+    await typeAndSubmit(formField('Postcode'), newMember.postCode)
+    // await formField('Postcode').replaceText(newMember.postCode)
     await Members.selectCountry(newMember.country)
 
     await Members.setStartDate(newMember.startDate)
