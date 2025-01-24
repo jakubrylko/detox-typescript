@@ -4,7 +4,6 @@ import {
   getByText,
   isElementVisible,
   launchApp,
-  replaceAndSubmit,
   scrollUntilVisible,
   shouldBeVisible,
   shouldNotBeVisible
@@ -26,34 +25,41 @@ describe('Members list', () => {
     await Home.assertMenu()
   })
 
-  xit('Empty members list', async () => {
+  it('Empty members list', async () => {
     await Members.assertEmptyScreen()
   })
 
-  it('Add new member', async () => {
+  it.only('Add new member', async () => {
     const newMember = createMember()
     await Header.addMemberBtn.tap()
 
-    await replaceAndSubmit(formField('Name'), newMember.name)
-    await replaceAndSubmit(formField('Surname'), newMember.surname)
+    // await typeAndSubmit(formField('Name'), newMember.name)
+    await formField('Name').replaceText(newMember.name)
+    // await typeAndSubmit(formField('Surname'), newMember.surname)
+    await formField('Surname').replaceText(newMember.surname)
     await Members.setDateOfBirth(newMember.dateOfBirth)
     await Members.setStartDay(newMember.startDay)
 
-    await replaceAndSubmit(formField('Email'), newMember.email)
+    // await typeAndSubmit(formField('Email'), newMember.email)
+    await formField('Email').replaceText(newMember.email)
     await scrollUntilVisible(
       formField('Address Line One'),
       Members.memberFormScroll
     )
-    await replaceAndSubmit(formField('Address Line One'), newMember.addressOne)
+    // await typeAndSubmit(formField('Address Line One'), newMember.addressOne)
+    await formField('Address Line One').replaceText(newMember.addressOne)
     await scrollUntilVisible(
       formField('Address Line Two'),
       Members.memberFormScroll
     )
-    await replaceAndSubmit(formField('Address Line Two'), newMember.addressTwo)
+    // await typeAndSubmit(formField('Address Line Two'), newMember.addressTwo)
+    await formField('Address Line Two').replaceText(newMember.addressTwo)
 
     await element(Members.memberFormScroll).swipe('up')
-    await replaceAndSubmit(formField('City'), newMember.city)
-    await replaceAndSubmit(formField('Postcode'), newMember.postCode)
+    // await typeAndSubmit(formField('City'), newMember.city)
+    await formField('City').replaceText(newMember.city)
+    // await typeAndSubmit(formField('Postcode'), newMember.postCode)
+    await formField('Postcode').replaceText(newMember.postCode)
     await Members.selectCountry(newMember.country)
 
     await Members.setStartDate(newMember.startDate)
@@ -67,7 +73,7 @@ describe('Members list', () => {
     await Members.assertMemberDetails(newMember)
   })
 
-  xit('Edit member', async () => {
+  it('Edit member', async () => {
     const updatedMember = createMember()
     await shouldBeVisible(Members.member)
     await Members.member.tap()
@@ -106,7 +112,7 @@ describe('Members list', () => {
     await Members.assertMember(updatedMember)
   })
 
-  xit('Delete member', async () => {
+  it('Delete member', async () => {
     await shouldBeVisible(Members.member)
     await Members.deleteMemberBtn.tap()
     await getByText('NO').tap()
