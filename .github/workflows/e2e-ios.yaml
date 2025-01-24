@@ -2,6 +2,7 @@ name: Detox iOS Tests
 
 on:
   pull_request:
+  workflow_dispatch:
 
 jobs:
   detox-ios:

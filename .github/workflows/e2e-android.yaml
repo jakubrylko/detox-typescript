@@ -43,9 +43,7 @@ jobs:
 
       - name: Get device name
         id: device
-        run:
-          AVD_NAME=$(node -p "require('./.detoxrc.js').devices.emulator.device.avdName")
-          echo "AVD_NAME=$AVD_NAME" >> $GITHUB_OUTPUT
+        run: node -e "console.log('AVD_NAME=' + require('./.detoxrc.js').devices.emulator.device.avdName)" >> $GITHUB_OUTPUT
 
       - name: Run Detox tests
         uses: reactivecircus/android-emulator-runner@v2
