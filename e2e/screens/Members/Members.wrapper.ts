@@ -10,7 +10,7 @@ import {
   setStartTime
 } from '.'
 
-export const fillMemberForm = async (member: Record<string, string>) => {
+export const fillAddMemberForm = async (member: Record<string, string>) => {
   await formField('Name').replaceText(member.name)
   await formField('Surname').replaceText(member.surname)
   await setDateOfBirth(member.dateOfBirth)

@@ -20,14 +20,14 @@ describe('Members list', () => {
 
     const newMember = createMember()
     await Header.addMemberBtn.tap()
-    await Members.fillMemberForm(newMember)
+    await Members.fillAddMemberForm(newMember)
     await Members.assertMember(newMember)
     await Members.member.tap()
     await Members.assertMemberDetails(newMember)
 
     const updatedMember = createMember()
     await Header.editMemberBtn.tap()
-    await Members.fillMemberForm(updatedMember)
+    await Members.fillAddMemberForm(updatedMember)
     await Members.assertMemberDetails(updatedMember)
     await Header.backBtn.tap()
     await Members.assertMember(updatedMember)
