@@ -10,7 +10,7 @@ import * as Members from 'e2e/screens/Members'
 import { createMember } from 'e2e/test-data/members'
 
 describe('Members list', () => {
-  beforeAll(async () => {
+  beforeEach(async () => {
     await launchApp()
   })
 
