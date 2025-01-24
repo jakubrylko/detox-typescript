@@ -44,8 +44,8 @@ jobs:
         if: steps.cache-cocoapods.outputs.cache-hit != 'true'
         run: bundle exec pod install --project-directory=ios
 
-      # - name: Start Metro bundler
-      #   run: yarn metro &
+      - name: Start Metro bundler
+        run: yarn metro &
 
       - name: Cache Detox build
         id: cache-detox-build
