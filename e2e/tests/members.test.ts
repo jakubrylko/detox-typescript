@@ -2,7 +2,6 @@ import * as Header from 'e2e/components/Header'
 import {
   editAndSubmit,
   getByText,
-  isElementVisible,
   launchApp,
   scrollUntilVisible,
   shouldBeVisible,
@@ -16,8 +15,9 @@ import { createMember } from 'e2e/test-data/members'
 describe('Members list', () => {
   beforeEach(async () => {
     await launchApp({ newInstance: false })
-    const isHomeScreen = await isElementVisible(element(Home.homeMenu))
-    isHomeScreen && (await Home.memberListBtn.tap())
+    // const isHomeScreen = await isElementVisible(element(Home.homeMenu))
+    // isHomeScreen && (await Home.memberListBtn.tap())
+    await Home.memberListBtn.tap()
   })
 
   afterAll(async () => {
