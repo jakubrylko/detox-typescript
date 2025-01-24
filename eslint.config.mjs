@@ -12,6 +12,7 @@ export default [
     files: ['**/*.{js,mjs,ts}'],
     languageOptions: {
       globals: {
+        jest: 'readonly',
         ...globals.browser,
         ...globals.node
       }
