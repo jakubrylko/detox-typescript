@@ -26,7 +26,7 @@ jobs:
           HOMEBREW_NO_AUTO_UPDATE: 1
           HOMEBREW_NO_INSTALL_CLEANUP: 1
 
-      - name: Setup Ruby
+      - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: 3.1.1
@@ -43,6 +43,9 @@ jobs:
       - name: Install CocoaPods
         run: bundle exec pod install --project-directory=ios
 
+      - name: Start Metro bundler
+        run: yarn metro &
+
       - name: Cache Detox build
         id: cache-detox-build
         uses: actions/cache@v4
@@ -51,13 +54,10 @@ jobs:
           key: ${{ runner.os }}-detox-build
           restore-keys: ${{ runner.os }}-detox-build
 
-      - name: Start Metro Bundler
-        run: yarn metro &
-
       - name: Build Detox APP
         run: yarn detox:build:ios:release
 
-      - name: Run Detox Tests
+      - name: Run Detox tests
         run: yarn detox:test:ios:release e2e/tests/members.test.ts --headless --record-logs all --take-screenshots failing --record-videos failing
 
       - name: Upload artifacts
