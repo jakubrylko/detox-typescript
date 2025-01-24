@@ -66,4 +66,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: detox-artifacts
-          path: e2e/artifacts/ios/
+          path: artifacts
