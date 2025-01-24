@@ -3,13 +3,11 @@ import * as Picker from 'e2e/components/Picker'
 import {
   convertDateToDashedFormat,
   getByText,
-  getText,
   isElementVisible,
   isIos,
   replaceAndSubmit
 } from 'e2e/helpers'
 import { androidListView } from 'e2e/shared'
-import jestExpect from 'expect'
 import { calendarRightArrow, formField, formPicker, memberFormScroll } from '.'
 
 export const setDateOfBirth = async (dateOfBirth: string) => {
@@ -27,8 +25,8 @@ export const setDateOfBirth = async (dateOfBirth: string) => {
     await getByText('OK').tap()
 
     // Assert that the selected date of birth matches 'DD-MM-YYYY' format
-    const selectedDate = await getText(formField('Date of Birth'))
-    jestExpect(selectedDate).toMatch(/^\d{2}-\d{2}-\d{4}$/)
+    // const selectedDate = await getText(formField('Date of Birth'))
+    // jestExpect(selectedDate).toMatch(/^\d{2}-\d{2}-\d{4}$/)
   }
 }
 

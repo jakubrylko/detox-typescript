@@ -48,7 +48,7 @@ jobs:
           api-level: 31
           arch: x86_64
           avd-name: ${{ steps.device.outputs.AVD_NAME }}
-          script: yarn detox:test:android:release --headless --record-logs all --take-screenshots failing --record-videos failing
+          script: yarn detox:test:android:release --headless --record-logs failing --record-videos failing
 
       # - name: Upload artifacts
       #   if: failure()

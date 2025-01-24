@@ -2,7 +2,6 @@ export const typeAndSubmit = async (
   element: Detox.NativeElement,
   text: string
 ) => {
-  await element.tap()
   await element.typeText(text)
   await element.tapReturnKey()
 }
