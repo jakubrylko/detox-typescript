@@ -1,3 +1,4 @@
+export * from './api'
 export * from './assertVisibility'
 export * from './dates'
 export * from './getAttribute'

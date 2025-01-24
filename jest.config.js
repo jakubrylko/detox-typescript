@@ -7,7 +7,7 @@ module.exports = {
   reporters: ['detox/runners/jest/reporter'],
   testEnvironment: 'detox/runners/jest/testEnvironment',
   testMatch: ['<rootDir>/e2e/**/*.test.ts'],
-  testTimeout: 120000,
+  testTimeout: 200000,
   transform: { '\\.(jpg|jpeg|png|gif|webp|svg)$': 'jest-transform-stub' },
   verbose: true
 }

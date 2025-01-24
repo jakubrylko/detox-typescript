@@ -45,7 +45,7 @@ const MemberForm = ({ onSubmit, initialValues }) => {
     }
 
     const errors = Object.keys(valuesToSubmit).filter((key) => {
-      // not required
+      // Not required
       if (key === 'addressLineTwo') {
         return false
       }
