@@ -51,11 +51,14 @@ jobs:
           key: ${{ runner.os }}-detox-build
           restore-keys: ${{ runner.os }}-detox-build
 
+      - name: Start Metro Bundler
+        run: yarn metro &
+
       - name: Build Detox APP
         run: yarn detox:build:ios:release
 
       - name: Run Detox Tests
-        run: yarn detox:test:ios:release --headless --record-logs all --take-screenshots failing --record-videos failing
+        run: yarn detox:test:ios:release e2e/tests/members.test.ts --headless --record-logs all --take-screenshots failing --record-videos failing
 
       # - name: Upload artifacts
       #   if: failure()
