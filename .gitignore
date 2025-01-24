@@ -17,6 +17,9 @@ buck-out/
 # CocoaPods
 /ios/Pods/
 
+# Detox
+artifacts
+
 # Fastlane
 */fastlane/report.xml
 */fastlane/Preview.html

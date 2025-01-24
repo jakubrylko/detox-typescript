@@ -60,9 +60,9 @@ jobs:
       - name: Run Detox Tests
         run: yarn detox:test:ios:release e2e/tests/members.test.ts --headless --record-logs all --take-screenshots failing --record-videos failing
 
-      # - name: Upload artifacts
-      #   if: failure()
-      #   uses: actions/upload-artifact@v4
-      #   with:
-      #     name: detox-artifacts
-      #     path: artifacts
+      - name: Upload artifacts
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: detox-artifacts
+          path: e2e/artifacts/ios
