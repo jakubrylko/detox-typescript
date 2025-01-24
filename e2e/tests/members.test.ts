@@ -3,7 +3,6 @@ import {
   editAndSubmit,
   getByText,
   launchApp,
-  reloadApp,
   scrollUntilVisible,
   shouldBeVisible,
   shouldNotBeVisible,
@@ -15,14 +14,8 @@ import { formField } from 'e2e/screens/Members'
 import { createMember } from 'e2e/test-data/members'
 
 describe('Members list', () => {
-  let isFirstTest = true
-
-  beforeAll(async () => {
-    await launchApp()
-  })
-
   beforeEach(async () => {
-    !isFirstTest && (await reloadApp())
+    await launchApp({ newInstance: false })
     await Home.memberListBtn.tap()
   })
 
@@ -32,7 +25,6 @@ describe('Members list', () => {
   })
 
   it('Empty members list', async () => {
-    isFirstTest = false
     await Members.assertEmptyScreen()
   })
 

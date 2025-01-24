@@ -1,7 +1,13 @@
-export const launchApp = async ({ ...rest }: Record<string, unknown> = {}) => {
+export const launchApp = async ({
+  newInstance = true,
+  ...rest
+}: {
+  newInstance?: boolean
+  [key: string]: unknown
+} = {}) => {
   await device.launchApp({
     permissions: { notifications: 'YES' },
-    newInstance: true,
+    newInstance,
     launchArgs: { ...rest }
   })
 }
