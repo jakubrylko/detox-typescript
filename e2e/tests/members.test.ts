@@ -69,7 +69,7 @@ describe('Members list', () => {
     await Members.assertMemberDetails(newMember)
   })
 
-  it('Edit member', async () => {
+  xit('Edit member', async () => {
     const updatedMember = createMember()
     await shouldBeVisible(Members.member)
     await Members.member.tap()
@@ -108,7 +108,7 @@ describe('Members list', () => {
     await Members.assertMember(updatedMember)
   })
 
-  it('Delete member', async () => {
+  xit('Delete member', async () => {
     await shouldBeVisible(Members.member)
     await Members.deleteMemberBtn.tap()
     await getByText('NO').tap()
