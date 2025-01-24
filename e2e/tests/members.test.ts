@@ -26,6 +26,7 @@ describe('Members list', () => {
     await Members.assertMemberDetails(newMember)
 
     const updatedMember = createMember()
+    await Header.editMemberBtn.tap()
     await Members.fillMemberForm(updatedMember)
     await Members.assertMemberDetails(updatedMember)
     await Header.backBtn.tap()
@@ -33,13 +34,9 @@ describe('Members list', () => {
 
     await Members.deleteMemberBtn.tap()
     await getByText('NO').tap()
-
     await shouldBeVisible(Members.member)
     await Members.deleteMemberBtn.tap()
     await getByText('YES').tap()
     await shouldNotBeVisible(Members.member)
-
-    await Header.backBtn.tap()
-    await Home.assertMenu()
   })
 })
