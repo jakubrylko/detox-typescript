@@ -44,7 +44,7 @@ jobs:
       - name: Get device name
         id: device
         run:
-          AVD_NAME=$(node -p "require('./.detoxrc').devices.emulator.device.avdName")
+          AVD_NAME=$(node -p "require('./.detoxrc.js').devices.emulator.device.avdName")
           echo "AVD_NAME=$AVD_NAME" >> $GITHUB_OUTPUT
 
       - name: Run Detox tests
