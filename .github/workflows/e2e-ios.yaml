@@ -56,10 +56,10 @@ jobs:
           restore-keys: ${{ runner.os }}-detox-build
 
       - name: Build Detox APP
-        run: yarn detox:build:ios:debug
+        run: yarn detox:build:ios:release
 
       - name: Run Detox tests
-        run: yarn detox:test:ios:debug e2e/tests/members.test.ts --record-logs failing --record-videos failing
+        run: yarn detox:test:ios:release e2e/tests/members.test.ts --record-logs failing --record-videos all
 
       - name: Upload artifacts
         if: failure()

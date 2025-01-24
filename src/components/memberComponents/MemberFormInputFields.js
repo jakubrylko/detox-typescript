@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import { StyleSheet, TextInput, View } from 'react-native'
 import { Text } from 'react-native-elements'
-import { removeSpaces } from '../../utils'
 
 const MemberFormInputFields = ({
   labelAndPlaceholder,
@@ -35,7 +34,7 @@ const MemberFormInputFields = ({
     <View pointerEvents={editableStatus ? 'auto' : 'none'}>
       <Text style={styles.label}>{labelAndPlaceholder}:</Text>
       <TextInput
-        testID={`formField-${removeSpaces(labelAndPlaceholder)}`}
+        testID={`formField-${labelAndPlaceholder}`}
         style={[styles.input, isErrorState ? styles.inputError : {}]}
         placeholder={labelAndPlaceholder}
         value={isErrorState ? errorMessage : inputValue}
