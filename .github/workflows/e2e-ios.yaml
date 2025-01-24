@@ -59,7 +59,7 @@ jobs:
         run: yarn detox:build:ios:release
 
       - name: Run Detox tests
-        run: yarn detox:test:ios:release e2e/tests/members.test.ts --record-logs failing --record-videos all
+        run: yarn detox:test:ios:release --headless --record-logs failing --record-videos failing
 
       - name: Upload artifacts
         if: failure()
