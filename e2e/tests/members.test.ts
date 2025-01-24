@@ -1,13 +1,13 @@
 import * as Header from 'e2e/components/Header'
 import {
   editAndSubmit,
-  getById,
   getByText,
+  isElementVisible,
   launchApp,
+  replaceAndSubmit,
   scrollUntilVisible,
   shouldBeVisible,
-  shouldNotBeVisible,
-  typeAndSubmit
+  shouldNotBeVisible
 } from 'e2e/helpers'
 import * as Home from 'e2e/screens/Home'
 import * as Members from 'e2e/screens/Members'
@@ -17,11 +17,8 @@ import { createMember } from 'e2e/test-data/members'
 describe('Members list', () => {
   beforeEach(async () => {
     await launchApp({ newInstance: false })
-    try {
-      await Home.memberListBtn.tap()
-    } catch {
-      console.log('beforeEach: No members button')
-    }
+    const isHomeScreen = await isElementVisible(element(Home.homeMenu))
+    isHomeScreen && (await Home.memberListBtn.tap())
   })
 
   afterAll(async () => {
@@ -37,27 +34,26 @@ describe('Members list', () => {
     const newMember = createMember()
     await Header.addMemberBtn.tap()
 
-    // await typeAndSubmit(formField('Name'), newMember.name)
-    await typeAndSubmit(getById('formField-Name'), newMember.name)
-    await typeAndSubmit(formField('Surname'), newMember.surname)
+    await replaceAndSubmit(formField('Name'), newMember.name)
+    await replaceAndSubmit(formField('Surname'), newMember.surname)
     await Members.setDateOfBirth(newMember.dateOfBirth)
     await Members.setStartDay(newMember.startDay)
 
-    await typeAndSubmit(formField('Email'), newMember.email)
+    await replaceAndSubmit(formField('Email'), newMember.email)
     await scrollUntilVisible(
       formField('Address Line One'),
       Members.memberFormScroll
     )
-    await typeAndSubmit(formField('Address Line One'), newMember.addressOne)
+    await replaceAndSubmit(formField('Address Line One'), newMember.addressOne)
     await scrollUntilVisible(
       formField('Address Line Two'),
       Members.memberFormScroll
     )
-    await typeAndSubmit(formField('Address Line Two'), newMember.addressTwo)
+    await replaceAndSubmit(formField('Address Line Two'), newMember.addressTwo)
 
     await element(Members.memberFormScroll).swipe('up')
-    await typeAndSubmit(formField('City'), newMember.city)
-    await typeAndSubmit(formField('Postcode'), newMember.postCode)
+    await replaceAndSubmit(formField('City'), newMember.city)
+    await replaceAndSubmit(formField('Postcode'), newMember.postCode)
     await Members.selectCountry(newMember.country)
 
     await Members.setStartDate(newMember.startDate)

@@ -8,8 +8,8 @@ export const member = getById('memberList-member')
 export const memberFullName = getById('memberList-fullName')
 export const saveMemberBtn = getById('saveMemberBtn')
 
-export const formField = (field: FormField): Detox.NativeElement =>
+export const formField = (field: FormField) =>
   getById(`formField-${removeSpaces(field)}`)
 
-export const memberField = (field: FormField): Detox.NativeElement =>
+export const memberField = (field: FormField) =>
   getById(`memberField-${removeSpaces(field)}`)
