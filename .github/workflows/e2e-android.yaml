@@ -52,7 +52,7 @@ jobs:
           arch: arm64-v8a
           avd-name: ${{ steps.device.outputs.AVD_NAME }}
           emulator-options: -no-snapshot-load -no-window -noaudio
-          script: yarn detox:test:android:release --headless --record-logs failing --record-videos failing
+          script: adb devices && yarn detox:test:android:release --headless --record-logs failing --record-videos failing
 
       - name: Upload artifacts
         if: failure()
