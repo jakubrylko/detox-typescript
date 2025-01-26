@@ -5,7 +5,7 @@ on:
 
 jobs:
   detox-android:
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout
@@ -51,7 +51,8 @@ jobs:
           api-level: 31
           arch: arm64-v8a
           avd-name: ${{ steps.device.outputs.AVD_NAME }}
-          emulator-options: -no-snapshot-load -no-window -noaudio -gpu off
+          emulator-options: -no-snapshot-save -no-window -noaudio -gpu off
+          force-avd-creation: false
           script: yarn detox:test:android:release --headless --record-logs failing --record-videos failing
 
       - name: Upload artifacts
