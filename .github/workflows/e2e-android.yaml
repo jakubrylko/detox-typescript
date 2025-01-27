@@ -1,5 +1,4 @@
 name: Detox Android Tests
-run-name: ${{ github.sha }}
 
 on:
   pull_request:
@@ -29,6 +28,9 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
+      - name: Start Metro bundler
+        run: yarn metro &
+
       - name: Cache Detox build
         id: cache-detox-build
         uses: actions/cache@v3
@@ -36,9 +38,6 @@ jobs:
           path: android/app/build
           key: ${{ runner.os }}-detox-build
           restore-keys: ${{ runner.os }}-detox-build
-
-      - name: Start Metro bundler
-        run: yarn metro &
 
       - name: Build Detox APK
         run: yarn detox:build:android:release
@@ -60,7 +59,7 @@ jobs:
 
       - name: Upload artifacts
         if: failure()
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: detox-artifacts
           path: artifacts
