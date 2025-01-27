@@ -28,9 +28,6 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Start Metro bundler
-        run: yarn metro &
-
       - name: Cache Detox build
         id: cache-detox-build
         uses: actions/cache@v3
@@ -38,6 +35,9 @@ jobs:
           path: android/app/build
           key: ${{ runner.os }}-detox-build
           restore-keys: ${{ runner.os }}-detox-build
+
+      - name: Start Metro bundler
+        run: yarn metro &
 
       - name: Build Detox APK
         run: yarn detox:build:android:release

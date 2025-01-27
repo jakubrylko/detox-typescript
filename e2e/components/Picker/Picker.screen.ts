@@ -6,7 +6,8 @@ import { datePickerText } from '.'
 export const selectYear = async (dateOfBirth: string) => {
   const targetYear = dateOfBirth.slice(-4)
   const selectedYear = (await getText(datePickerText)) || ''
-  const swipeDirection = Number(targetYear) > Number(selectYear) ? 'up' : 'down'
+  const swipeDirection =
+    Number(targetYear) > Number(selectedYear) ? 'up' : 'down'
 
   await getByText(selectedYear).tap()
   while (!(await isElementVisible(getByText(targetYear)))) {
