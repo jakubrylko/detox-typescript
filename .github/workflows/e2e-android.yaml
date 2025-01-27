@@ -47,7 +47,7 @@ jobs:
       - name: Build Detox APK
         run: yarn detox:build:android:release
 
-      - name: Set up emulator and run Detox tests
+      - name: Run Detox tests
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: ${{ env.API_LEVEL }}
