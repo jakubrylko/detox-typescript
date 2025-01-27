@@ -28,7 +28,7 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Gradle cache
+      - name: Cache Gradle
         uses: gradle/actions/setup-gradle@v3
 
       - name: Cache Detox build
