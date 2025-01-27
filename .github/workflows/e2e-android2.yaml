@@ -31,10 +31,6 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      # - name: Get device name
-      #   id: device
-      #   run: node -e "console.log('AVD_NAME=' + require('./.detoxrc.js').devices.emulator.device.avdName)" >> $GITHUB_OUTPUT
-
       - name: Set up environment variables
         run: |
           echo "ANDROID_SDK_ROOT=${{ github.workspace }}/android-sdk" >> $GITHUB_ENV
@@ -56,12 +52,14 @@ jobs:
       - name: Get device name
         id: device
         run: |
-          echo "AVD_NAME=$(node -e \"console.log(require('./.detoxrc.js').devices.emulator.device.avdName)\")" >> $GITHUB_OUTPUT
+          echo "AVD_NAME=$(node -e \"console.log(require('./.detoxrc').devices.emulator.device.avdName)\")" >> $GITHUB_OUTPUT
 
       - name: Create AVD
         run: |
+          echo "AVD_NAME is: ${{ steps.device.outputs.AVD_NAME }}"
           echo "Creating AVD with name: ${{ steps.device.outputs.AVD_NAME }}"
-          echo "no" | avdmanager create avd -n ${{ steps.device.outputs.AVD_NAME }} -k "system-images;android-${{ env.API_LEVEL }};default;x86_64" --device "pixel"
+          # Ensure AVD_NAME is correctly passed to the command
+          echo "no" | avdmanager create avd -n "${{ steps.device.outputs.AVD_NAME }}" -k "system-images;android-${{ env.API_LEVEL }};default;x86_64" --device "pixel"
 
       - name: Start Emulator
         run: |
@@ -109,18 +107,21 @@ jobs:
       - name: Build Detox APK
         run: yarn detox:build:android:release
 
+      - name: Run Detox tests
+        run: yarn detox:test:android:release --headless --record-logs failing --record-videos failing
+
       # - name: Get device name
       #   id: device
       #   run: node -e "console.log('AVD_NAME=' + require('./.detoxrc.js').devices.emulator.device.avdName)" >> $GITHUB_OUTPUT
 
-      - name: Run Detox tests
-        uses: reactivecircus/android-emulator-runner@v2
-        with:
-          api-level: ${{ env.API_LEVEL }}
-          arch: ${{ env.ARCH }}
-          avd-name: ${{ steps.device.outputs.AVD_NAME }}
-          emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
-          script: yarn detox:test:android:release --headless --record-logs failing --record-videos failing
+      # - name: Run Detox tests
+      #   uses: reactivecircus/android-emulator-runner@v2
+      #   with:
+      #     api-level: ${{ env.API_LEVEL }}
+      #     arch: ${{ env.ARCH }}
+      #     avd-name: ${{ steps.device.outputs.AVD_NAME }}
+      #     emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
+      #     script: yarn detox:test:android:release --headless --record-logs failing --record-videos failing
 
       - name: Upload artifacts
         if: failure()
