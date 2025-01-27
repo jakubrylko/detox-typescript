@@ -6,7 +6,7 @@ on:
 
 jobs:
   detox-android:
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout
@@ -42,13 +42,19 @@ jobs:
       - name: Build Detox APK
         run: yarn detox:build:android:release
 
+      - name: Enable KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+
       - name: Run Detox tests
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: 31
-          arch: arm64-v8a
+          arch: x86_64
           avd-name: Pixel_XL_API_31
-          emulator-options: -accel off -camera-back none -gpu off -no-boot-anim -no-snapshot-save -no-window -noaudio
+          emulator-options: -camera-back none -no-boot-anim -no-snapshot-save -no-window -noaudio
           script: yarn detox:test:android:release --headless --record-logs failing --record-videos failing
 
       - name: Upload artifacts
