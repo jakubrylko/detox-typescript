@@ -6,11 +6,10 @@ on:
 jobs:
   detox-android:
     runs-on: macos-latest
+
     env:
       API_LEVEL: 31
       ARCH: arm64-v8a
-      ANDROID_SDK_ROOT: ${{ github.workspace }}/android-sdk
-      PATH: ${{ github.workspace }}/android-sdk/cmdline-tools/latest/bin:${{ github.workspace }}/android-sdk/platform-tools:${{ github.workspace }}/android-sdk/emulator:$PATH
 
     steps:
       - name: Checkout
@@ -32,33 +31,46 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
+      # - name: Get device name
+      #   id: device
+      #   run: node -e "console.log('AVD_NAME=' + require('./.detoxrc.js').devices.emulator.device.avdName)" >> $GITHUB_OUTPUT
+
+      - name: Set up environment variables
+        run: |
+          echo "ANDROID_SDK_ROOT=${{ github.workspace }}/android-sdk" >> $GITHUB_ENV
+          echo "PATH=${{ github.workspace }}/android-sdk/cmdline-tools/latest/bin:${{ github.workspace }}/android-sdk/platform-tools:${{ github.workspace }}/android-sdk/emulator:$PATH" >> $GITHUB_ENV
+
+      - name: Install Command-line Tools
+        run: |
+          mkdir -p ${{ github.workspace }}/android-sdk/cmdline-tools
+          curl -sS https://dl.google.com/android/repository/commandlinetools-linux-8512546_latest.zip -o commandlinetools.zip
+          unzip -q commandlinetools.zip -d ${{ github.workspace }}/android-sdk/cmdline-tools
+          mv ${{ github.workspace }}/android-sdk/cmdline-tools/cmdline-tools ${{ github.workspace }}/android-sdk/cmdline-tools/latest
+
+      - name: Accept Licenses and Install SDK Components
+        run: |
+          yes | sdkmanager --licenses > /dev/null
+          sdkmanager --install "platform-tools" "emulator" "system-images;android-${{ env.API_LEVEL }};default;x86_64"
+          sdkmanager --install "platforms;android-${{ env.API_LEVEL }}" "build-tools;${{ env.API_LEVEL }}.0.0"
+
       - name: Get device name
         id: device
-        run: node -e "console.log('AVD_NAME=' + require('./.detoxrc.js').devices.emulator.device.avdName)" >> $GITHUB_OUTPUT
-
-      - name: Set up environment
         run: |
-          echo "ANDROID_HOME=${{ github.workspace }}/android-sdk" >> $GITHUB_ENV
-          echo "ANDROID_SDK_ROOT=${{ github.workspace }}/android-sdk" >> $GITHUB_ENV
-
-      - name: Install Android SDK
-        run: |
-          mkdir -p $ANDROID_SDK_ROOT
-          yes | sdkmanager --licenses > /dev/null
-          sdkmanager --install "platform-tools" "emulator" "system-images;android-31;default;x86_64" > /dev/null
-          sdkmanager --install "platforms;android-31" "build-tools;31.0.0" > /dev/null
+          echo "AVD_NAME=$(node -e \"console.log(require('./.detoxrc.js').devices.emulator.device.avdName)\")" >> $GITHUB_OUTPUT
 
       - name: Create AVD
         run: |
-          echo "no" | avdmanager create avd -n test -k "system-images;android-31;default;x86_64" --device "pixel_xl"
+          echo "Creating AVD with name: ${{ steps.device.outputs.AVD_NAME }}"
+          echo "no" | avdmanager create avd -n ${{ steps.device.outputs.AVD_NAME }} -k "system-images;android-${{ env.API_LEVEL }};default;x86_64" --device "pixel"
 
       - name: Start Emulator
         run: |
-          nohup emulator -avd test -no-window -no-audio -no-boot-anim -gpu swiftshader_indirect > /dev/null 2>&1 &
+          echo "Starting Emulator: ${{ steps.device.outputs.AVD_NAME }}"
+          nohup emulator -avd ${{ steps.device.outputs.AVD_NAME }} -no-window -no-audio -no-boot-anim -gpu swiftshader_indirect > /dev/null 2>&1 &
           adb wait-for-device
           adb shell input keyevent 82 # Unlock emulator
 
-      - name: Verify Emulator is Running
+      - name: Verify Emulator
         run: |
           adb devices
           adb shell getprop sys.boot_completed
