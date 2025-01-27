@@ -2,6 +2,7 @@ name: Detox Android Tests
 
 on:
   pull_request:
+  workflow_dispatch:
 
 jobs:
   detox-android:
