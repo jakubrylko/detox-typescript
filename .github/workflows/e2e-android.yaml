@@ -57,7 +57,8 @@ jobs:
           api-level: 31
           arch: x86_64
           avd-name: Pixel_XL_API_31
-          emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
+          # emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
+          profile: pixel_xl
           script: yarn detox:test:android:release --headless --record-logs failing --record-videos failing
 
       - name: Upload artifacts
