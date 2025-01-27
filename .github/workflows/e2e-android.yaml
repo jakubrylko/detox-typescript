@@ -1,4 +1,5 @@
 name: Detox Android Tests
+run-name: ${{ github.sha }}
 
 on:
   pull_request:
