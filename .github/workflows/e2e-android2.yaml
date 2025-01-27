@@ -9,6 +9,8 @@ jobs:
     env:
       API_LEVEL: 31
       ARCH: arm64-v8a
+      ANDROID_SDK_ROOT: ${{ github.workspace }}/android-sdk
+      PATH: ${{ github.workspace }}/android-sdk/platform-tools:${{ github.workspace }}/android-sdk/emulator:$PATH
 
     steps:
       - name: Checkout
@@ -30,33 +32,45 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Set up Android SDK
-        run: |
-          echo "Accepting all SDK licenses"
-          yes | sdkmanager --licenses || true
-
-          echo "Installing required SDK components"
-          sdkmanager --install \
-            "build-tools;35.0.0" \
-            "platform-tools" \
-            "platforms;android-31" \
-            "emulator" \
-            "system-images;android-31;default;arm64-v8a" \
-            --channel=0 || true
-        shell: bash
-
       - name: Get device name
         id: device
         run: node -e "console.log('AVD_NAME=' + require('./.detoxrc.js').devices.emulator.device.avdName)" >> $GITHUB_OUTPUT
 
-      - name: Start Android Emulator
-        uses: reactivecircus/android-emulator-runner@v2
-        with:
-          api-level: ${{ env.API_LEVEL }}
-          arch: ${{ env.ARCH }}
-          avd-name: ${{ steps.device.outputs.AVD_NAME }}
-          emulator-boot-timeout: 300
-          script: echo 'Starting...'
+      - name: Set up environment
+        run: |
+          echo "ANDROID_HOME=${{ github.workspace }}/android-sdk" >> $GITHUB_ENV
+          echo "ANDROID_SDK_ROOT=${{ github.workspace }}/android-sdk" >> $GITHUB_ENV
+
+      - name: Install Android SDK
+        run: |
+          mkdir -p $ANDROID_SDK_ROOT
+          yes | sdkmanager --licenses > /dev/null
+          sdkmanager --install "platform-tools" "emulator" "system-images;android-31;default;x86_64" > /dev/null
+          sdkmanager --install "platforms;android-31" "build-tools;31.0.0" > /dev/null
+          
+      - name: Create AVD
+        run: |
+          echo "no" | avdmanager create avd -n test -k "system-images;android-31;default;x86_64" --device "pixel_xl"
+      
+      - name: Start Emulator
+        run: |
+          nohup emulator -avd test -no-window -no-audio -no-boot-anim -gpu swiftshader_indirect > /dev/null 2>&1 &
+          adb wait-for-device
+          adb shell input keyevent 82 # Unlock emulator
+          
+      - name: Verify Emulator is Running
+        run: |
+          adb devices
+          adb shell getprop sys.boot_completed
+
+      # - name: Start Android Emulator
+      #   uses: reactivecircus/android-emulator-runner@v2
+      #   with:
+      #     api-level: ${{ env.API_LEVEL }}
+      #     arch: ${{ env.ARCH }}
+      #     avd-name: ${{ steps.device.outputs.AVD_NAME }}
+      #     emulator-boot-timeout: 300
+      #     script: echo 'Starting...'
 
       # - name: Create AVD and generate snapshot for caching
       #   if: steps.avd-cache.outputs.cache-hit != 'true'

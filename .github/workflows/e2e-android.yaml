@@ -5,6 +5,7 @@ on:
 
 jobs:
   detox-android:
+    if: false
     runs-on: ubuntu-latest
 
     steps:
