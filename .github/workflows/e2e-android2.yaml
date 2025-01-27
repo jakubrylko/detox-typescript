@@ -61,7 +61,13 @@ jobs:
       - name: Start Emulator
         run: |
           echo "Starting Emulator: ${{ env.AVD_NAME }}"
-          nohup emulator -avd ${{ env.AVD_NAME }} -no-window -no-audio -no-boot-anim -gpu swiftshader_indirect > /dev/null 2>&1 &
+          nohup emulator -avd ${{ env.AVD_NAME }} -no-window -no-audio -no-boot-anim -gpu swiftshader_indirect > emulator.log 2>&1 &
+          # Wait for the emulator to fully start (can take a few seconds)
+          echo "Waiting for emulator to boot..."
+          # Give it some time to start up (this can vary depending on system speed)
+          sleep 30
+          adb devices  # List devices to confirm emulator is ready
+          adb shell input keyevent 82 # Unlock emulator
 
       - name: Verify Emulator
         run: |
