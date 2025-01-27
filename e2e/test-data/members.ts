@@ -6,7 +6,7 @@ import { countryList } from '../../src/data'
 const { date, helpers, internet, location, person } = faker
 
 export const createMember = () => {
-  const minBirthYear = String(getCurrentYear() - 19)
+  const minBirthYear = getCurrentYear() - 19
   const randomDateOfBirth = date.between({
     from: '1980-01-01',
     to: `${minBirthYear}-12-31`

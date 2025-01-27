@@ -2,10 +2,16 @@ name: Detox Android Tests
 
 on:
   pull_request:
+  workflow_dispatch:
 
 jobs:
   detox-android:
     runs-on: macos-latest
+
+    env:
+      API_LEVEL: 31
+      ARCH: arm64-v8a
+      AVD_NAME: Pixel_XL_API_31
 
     steps:
       - name: Checkout
@@ -27,6 +33,9 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
+      - name: Start Metro bundler
+        run: yarn metro &
+
       - name: Cache Detox build
         id: cache-detox-build
         uses: actions/cache@v3
@@ -38,21 +47,18 @@ jobs:
       - name: Build Detox APK
         run: yarn detox:build:android:release
 
-      - name: Get device
-        id: device
-        run: node -e "console.log('AVD_NAME=' + require('./.detoxrc.js').devices.emulator.device.avdName)" >> $GITHUB_OUTPUT
-
-      - name: Run Detox Tests
+      - name: Set up emulator and run Detox tests
         uses: reactivecircus/android-emulator-runner@v2
         with:
-          api-level: 31
-          arch: x86_64
-          avd-name: ${{ steps.device.outputs.AVD_NAME }}
+          api-level: ${{ env.API_LEVEL }}
+          arch: ${{ env.ARCH }}
+          avd-name: ${{ env.AVD_NAME }}
+          emulator-options: -camera-back none -gpu off -no-boot-anim -no-snapshot-save -no-window -noaudio
           script: yarn detox:test:android:release --headless --record-logs failing --record-videos failing
 
-      # - name: Upload artifacts
-      #   if: failure()
-      #   uses: actions/upload-artifact@v3
-      #   with:
-      #     name: detox-artifacts
-      #     path: artifacts
+      - name: Upload artifacts
+        if: failure()
+        uses: actions/upload-artifact@v3
+        with:
+          name: detox-artifacts
+          path: artifacts

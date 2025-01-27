@@ -14,7 +14,7 @@ describe('Members list', () => {
     await launchApp()
   })
 
-  it('Add, edit, delete member', async () => {
+  it('Validate member list', async () => {
     await Home.memberListBtn.tap()
     await Members.assertEmptyScreen()
 
