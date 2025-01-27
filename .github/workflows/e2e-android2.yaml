@@ -9,8 +9,6 @@ jobs:
     env:
       API_LEVEL: 31
       ARCH: arm64-v8a
-      ANDROID_SDK_ROOT: ${{ github.workspace }}/android-sdk
-      PATH: ${{ github.workspace }}/android-sdk/platform-tools:${{ github.workspace }}/android-sdk/emulator:$PATH
 
     steps:
       - name: Checkout
@@ -47,17 +45,17 @@ jobs:
           yes | sdkmanager --licenses > /dev/null
           sdkmanager --install "platform-tools" "emulator" "system-images;android-31;default;x86_64" > /dev/null
           sdkmanager --install "platforms;android-31" "build-tools;31.0.0" > /dev/null
-          
+
       - name: Create AVD
         run: |
           echo "no" | avdmanager create avd -n test -k "system-images;android-31;default;x86_64" --device "pixel_xl"
-      
+
       - name: Start Emulator
         run: |
           nohup emulator -avd test -no-window -no-audio -no-boot-anim -gpu swiftshader_indirect > /dev/null 2>&1 &
           adb wait-for-device
           adb shell input keyevent 82 # Unlock emulator
-          
+
       - name: Verify Emulator is Running
         run: |
           adb devices
