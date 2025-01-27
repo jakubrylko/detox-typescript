@@ -9,6 +9,8 @@ jobs:
     env:
       API_LEVEL: 31
       ARCH: arm64-v8a
+      ANDROID_SDK_ROOT: ${{ github.workspace }}/android-sdk
+      PATH: ${{ github.workspace }}/android-sdk/cmdline-tools/latest/bin:${{ github.workspace }}/android-sdk/platform-tools:${{ github.workspace }}/android-sdk/emulator:$PATH
 
     steps:
       - name: Checkout
