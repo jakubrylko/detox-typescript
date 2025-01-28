@@ -37,7 +37,7 @@ jobs:
           restore-keys: ${{ runner.os }}-detox-build
 
       - name: Start Metro bundler
-        run: yarn metro &
+        run: yarn metro:start &
 
       - name: Build Detox APK
         run: yarn detox:build:android:release

@@ -54,7 +54,7 @@ jobs:
         run: bundle exec pod install --project-directory=ios
 
       - name: Start Metro bundler
-        run: yarn metro &
+        run: yarn metro:start &
 
       - name: Build Detox APP
         run: yarn detox:build:ios:release
