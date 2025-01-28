@@ -80,10 +80,18 @@ Android:
 `yarn detox:build:android:release`
 
 iOS:
-Before building the iOS, make sure to install the necessary pods:
+Before building the iOS, make sure to install the pods:
 `yarn pods`
 `yarn detox:build:ios:debug`
 `yarn detox:build:ios:release`
+
+---
+
+In case of any issues with building the app, check the official **[documentation](https://wix.github.io/Detox/docs/troubleshooting/building-the-app)** or try using the provided cleanup scripts:
+`yarn clean:detox`
+`yarn clean:android`
+`yarn clean:pods`
+`yarn clean:ios`
 
 **4. Run Detox tests**
 To run entire test suite use:
@@ -99,6 +107,8 @@ To run single spec file add relative path:
 
 `yarn detox:test:android:release e2e/tests/home.test.ts`
 `yarn detox:test:ios:release e2e/tests/home.test.ts`
+
+For troubleshooting issues with running tests, refer to the official **[documentation](https://wix.github.io/Detox/docs/troubleshooting/running-tests)**.
 
 ## Development tools
 
