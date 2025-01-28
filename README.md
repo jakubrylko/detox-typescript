@@ -11,36 +11,36 @@ Test application used in this project originates from the **Pinnacle QA Academy 
 To successfully run this project on both platforms, a Mac machine is required, as Xcode is essential for running iOS tests. This guide is specifically designed for macOS users.
 
 1. Install Homebrew
-`/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
+   `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
 
-2. Install Node.js
-`brew install node@20`
+3. Install Node.js
+   `brew install node@20`
 
-3. Install yarn
-`brew install yarn`
+5. Install yarn
+   `brew install yarn`
 
-4. Set up Android
+7. Set up Android
 To set up Android Environment, follow the guide available **[here](https://reactnative.dev/docs/next/set-up-your-environment?platform=android)**
 
-5. Set up iOS
+8. Set up iOS
 To set up iOS Environment, follow the guide available **[here](https://reactnative.dev/docs/next/set-up-your-environment?platform=ios)**
 
-6. Install Ruby
+9. Install Ruby
 `brew install ruby@3.1`
 
-7. Install CocoaPods
+10. Install CocoaPods
 `sudo gem install cocoapods`
 
-8. Install applesimutils
+11. Install applesimutils
 `brew tap wix/brew && brew install applesimutils`  
 
-9. Install Detox CLI
+12. Install Detox CLI
 `yarn global add detox-cli`
 
-10. Clone the repository
+13. Clone the repository
 `git clone https://github.com/jakubrylko/detox-typescript.git`
 
-11. Install dependencies
+14. Install dependencies
 `cd detox-typescript && yarn install`
 
 For troubleshooting, check the Detox Environment Setup guide available **[here](https://wix.github.io/Detox/docs/introduction/environment-setup)**.
