@@ -69,7 +69,7 @@ For troubleshooting, check the Detox Environment Setup guide available **[here](
 
 ### Prerequisites
 
-**1. Create emulator device**  
+1.&nbsp; Create emulator device  
 
 To run **Android** tests, create **Pixel_XL_API_31** emulator instance, which is defined in the `.detoxrc.js` file and assigned to: `devices.emulator.device.avdName`. This emulator can be created manually through Android Studio or via the terminal using the following command:
 ```
@@ -78,7 +78,7 @@ avdmanager create avd -n Pixel_XL_API_31 -k "system-images;android-31;google_api
 
 While the emulator device can be changed to another, it is not recommended, as it hasn't been tested on different emulators. Some tests may fail due to viewport differences and/or compatibility issues.
 
-**2. Create simulator device**  
+2.&nbsp; Create simulator device  
 
 To run **iOS** tests, create an **iPhone 15** simulator instance with **iOS 17.5**, which is defined in the `.detoxrc.js` file and assigned to `devices.simulator.device.type`. It can be created manually through Xcode or via the terminal using the following command:
 ```
@@ -89,7 +89,7 @@ Simulator can be changed to another, however it is not recommended, as some test
 
 ### Run tests
 
-**1. Run device**
+1.&nbsp; Run device
 ```
 emulator -avd Pixel_XL_API_31
 ```
@@ -98,12 +98,12 @@ emulator -avd Pixel_XL_API_31
 xcrun simctl boot "iPhone 15"
 ```
 
-**2. Start Metro bundler**
+2.&nbsp; Start Metro bundler
 ```
 yarn metro:start
 ```
 
-**3. Run Detox build**  
+3.&nbsp; Run Detox build  
 
 Detox has its own build commands to prepare the app for testing. It can be built in debug and release configurations. The **debug** configuration is recommended for local use, as it includes debugging capabilities. The **release** configuration is used in CI, as it is optimized for performance.
 ```
@@ -133,7 +133,7 @@ yarn clean:pods
 yarn clean:ios
 ```
 
-**4. Run Detox tests**  
+4.&nbsp; Run Detox tests  
 
 To run entire test suite use:
 ```
