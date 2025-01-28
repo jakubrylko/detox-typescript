@@ -65,12 +65,12 @@ Simulator can be changed to another, however it is not recommended, as some test
 
 ### Run tests
 
- **1. Run device**
+**1. Run device**
 Android: `emulator -avd Pixel_XL_API_31`
 iOS: `xcrun simctl boot "iPhone 15"`
 
- **2. Start Metro bundler**
- `yarn metro:start`
+**2. Start Metro bundler**
+`yarn metro:start`
 
 **3. Run Detox build**
 Detox has its own build commands to prepare the app for testing. It can be built in debug and release configurations. The **debug** configuration is recommended for local use, as it includes debugging capabilities. The **release** configuration is used in CI, as it is optimized for performance.
@@ -85,7 +85,7 @@ Before building the iOS, make sure to install the necessary pods:
 `yarn detox:build:ios:debug`
 `yarn detox:build:ios:release`
 
- **4. Run Detox tests**
+**4. Run Detox tests**
 To run entire test suite use:
 `yarn detox:test:android:debug`
 `yarn detox:test:ios:debug`
