@@ -111,7 +111,7 @@ This project uses the following tools to ensure code quality: **[Prettier](https
 
 ### Debugging
 
-To inspect Android components, I used **[Appium Inspector](https://github.com/appium/appium-inspector?tab=readme-ov-file)**. For iOS components, **Xcode** and **[React Native DevTools](https://reactnative.dev/docs/react-native-devtools)**.  To debug network traffic - **[Proxyman](https://proxyman.com/)**.
+To inspect Android components, I used **[Appium Inspector](https://github.com/appium/appium-inspector?tab=readme-ov-file)**. For iOS components, **Xcode** and **[React Native DevTools](https://reactnative.dev/docs/react-native-devtools)**. To debug network traffic - **[Proxyman](https://proxyman.com/)**.
 
 ### Github workflows
 
