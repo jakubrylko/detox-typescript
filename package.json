@@ -19,7 +19,7 @@
     "detox:test:android:release": "detox test -c android.release",
     "detox:test:ios:debug": "detox test -c ios.debug",
     "detox:test:ios:release": "detox test -c ios.release",
-    "metro": "react-native start",
+    "metro:start": "react-native start",
     "pods": "cd ios && pod install && cd ..",
     "postinstall": "patch-package",
     "rn:build:android": "react-native run-android",
