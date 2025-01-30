@@ -166,6 +166,7 @@ For troubleshooting issues with running tests, refer to the official [documentat
 ## Development tools
 
 ### Code quality
+
 This project uses the following tools to ensure code quality: [Prettier](https://prettier.io/docs/en/), [ESLint](https://eslint.org/docs/latest/), [TypeScript](https://typescriptlang.org/docs/), and [Husky](https://typicode.github.io/husky/). Quality checks automatically run on each commit, ensuring that standards are met. However, they can also be run independently at any time using the following commands:
 
 Prettier formatting:
